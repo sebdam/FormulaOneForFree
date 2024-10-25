@@ -7,14 +7,13 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct RaceView: View {
     
-    @State var loading = true;
-    @State var loadingData = true;
-    @State var loadingMeeting = true;
-    @State var loadingRace = true;
+    @State var loadingData = false;
+    @State var loadingMeeting = false;
+    @State var firstSet = false;
     
-    @State var seasons: [Season] = []
+    @State var seasons: [Season]
     @State var races: [Race] = []
     @State var meetings: [Meeting] = []
     
@@ -30,20 +29,24 @@ struct ContentView: View {
     @State var ShowFuturQualifying = true
     @State var ShowFuturRace = true
     
-    @State private var drivers:[Driver] = []
+    @State var drivers:[Driver] = []
     
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
             if(loadingData){
-                Text("Loading ...")
+                VStack {
+                    ProgressView()
+                    Text("Loading data ...")
+                }
             }
             else {
                 NavigationSplitView {
                     if(loadingMeeting){
                         VStack {
                             ProgressView()
+                            Text("Loading meeting ...")
                         }
                     }
                     else {
@@ -80,57 +83,48 @@ struct ContentView: View {
                                 
                                 Spacer()
                                 
-                                if(loadingRace){
-                                    VStack {
-                                        Spacer()
-                                        ProgressView()
-                                        Spacer()
+                                //Manage past events
+                                if(meeting?.sessions != nil){
+                                    ForEach(meeting!.sessions!){ session in
+                                        let raceResults = session.session_name == "Sprint" || session.session_name == "Race" ? race?.Results : nil
+                                        NavigationLink() {
+                                            SessionResultsView(session: session, drivers: drivers, results: raceResults ?? [])
+                                        } label: {
+                                            ScheduleView(dueDate:Binding<Date?>.constant(session.date_start), scheduleName: session.session_name)
+                                                .frame(maxWidth: .infinity)
+                                        }
+                                        .buttonStyle(PlainButtonStyle())
                                     }
                                 }
-                                else {
-                                    //Manage past events
-                                    if(meeting?.sessions != nil){
-                                        ForEach(meeting!.sessions!){ session in
-                                            let raceResults = session.session_name == "Sprint" || session.session_name == "Race" ? race?.Results : nil
-                                            NavigationLink() {
-                                                SessionResultsView(session: session, drivers: drivers, results: raceResults ?? [])
-                                            } label: {
-                                                ScheduleView(dueDate:Binding<Date?>.constant(session.date_start), scheduleName: session.session_name)
-                                                    .frame(maxWidth: .infinity)
-                                            }
-                                            .buttonStyle(PlainButtonStyle())
-                                        }
-                                    }
-                                    
-                                    //Manage futur events
-                                    if(ShowFuturPractice1){
-                                        ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.FirstPractice?.datetime), scheduleName: "Practice 1")
-                                            .frame(maxWidth: .infinity)
-                                    }
-                                    if(ShowFuturPractice2){
-                                        ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.SecondPractice?.datetime), scheduleName: "Practice 2")
-                                            .frame(maxWidth: .infinity)
-                                    }
-                                    if(ShowFuturPractice3){
-                                        ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.ThirdPractice?.datetime), scheduleName: "Practice 3")
-                                            .frame(maxWidth: .infinity)
-                                    }
-                                    if(ShowFuturSprintQualifying){
-                                        ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.SprintQualifying?.datetime), scheduleName: "Sprint Qualifying")
-                                            .frame(maxWidth: .infinity)
-                                    }
-                                    if(ShowFuturSprint){
-                                        ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.Sprint?.datetime), scheduleName: "Sprint")
-                                            .frame(maxWidth: .infinity)
-                                    }
-                                    if(ShowFuturQualifying){
-                                        ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.Qualifying?.datetime), scheduleName: "Qualifying")
-                                            .frame(maxWidth: .infinity)
-                                    }
-                                    if(ShowFuturRace){
-                                        ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.datetime), scheduleName: "Race")
-                                            .frame(maxWidth: .infinity)
-                                    }
+                                
+                                //Manage futur events
+                                if(ShowFuturPractice1){
+                                    ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.FirstPractice?.datetime), scheduleName: "Practice 1")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                if(ShowFuturPractice2){
+                                    ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.SecondPractice?.datetime), scheduleName: "Practice 2")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                if(ShowFuturPractice3){
+                                    ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.ThirdPractice?.datetime), scheduleName: "Practice 3")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                if(ShowFuturSprintQualifying){
+                                    ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.SprintQualifying?.datetime), scheduleName: "Sprint Qualifying")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                if(ShowFuturSprint){
+                                    ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.Sprint?.datetime), scheduleName: "Sprint")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                if(ShowFuturQualifying){
+                                    ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.Qualifying?.datetime), scheduleName: "Qualifying")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                if(ShowFuturRace){
+                                    ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue?.datetime), scheduleName: "Race")
+                                        .frame(maxWidth: .infinity)
                                 }
                                 
                                 Spacer()
@@ -149,7 +143,7 @@ struct ContentView: View {
                                                 AsyncImage(url: URL(string: driverUrl!)) { image in
                                                     image.resizable()
                                                 } placeholder: {
-                                                    Color.red
+                                                    ProgressView()
                                                 }
                                                 .frame(width: 50, height: 50)
                                                 .clipShape(.rect(cornerRadius: 12))
@@ -166,7 +160,7 @@ struct ContentView: View {
                                                 AsyncImage(url: URL(string: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2024/\(team!.replacingOccurrences(of: " ", with: "-")).png")) { image in
                                                     image.resizable()
                                                 } placeholder: {
-                                                    Color.red
+                                                    ProgressView()
                                                 }
                                                 .frame(width: 87, height: 25)
                                                 .clipShape(.rect(cornerRadius: 12))
@@ -189,7 +183,7 @@ struct ContentView: View {
                                                 AsyncImage(url: URL(string: driverUrl!)) { image in
                                                     image.resizable()
                                                 } placeholder: {
-                                                    Color.red
+                                                    ProgressView()
                                                 }
                                                 .frame(width: 50, height: 50)
                                                 .clipShape(.rect(cornerRadius: 12))
@@ -206,7 +200,7 @@ struct ContentView: View {
                                                 AsyncImage(url: URL(string: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2024/\(team!.replacingOccurrences(of: " ", with: "-")).png")) { image in
                                                     image.resizable()
                                                 } placeholder: {
-                                                    Color.red
+                                                    ProgressView()
                                                 }
                                                 .frame(width: 87, height: 25)
                                                 .clipShape(.rect(cornerRadius: 12))
@@ -229,7 +223,7 @@ struct ContentView: View {
                                                 AsyncImage(url: URL(string: driverUrl!)) { image in
                                                     image.resizable()
                                                 } placeholder: {
-                                                    Color.red
+                                                    ProgressView()
                                                 }
                                                 .frame(width: 50, height: 50)
                                                 .clipShape(.rect(cornerRadius: 12))
@@ -246,7 +240,7 @@ struct ContentView: View {
                                                 AsyncImage(url: URL(string: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2024/\(team!.replacingOccurrences(of: " ", with: "-")).png")) { image in
                                                     image.resizable()
                                                 } placeholder: {
-                                                    Color.red
+                                                    ProgressView()
                                                 }
                                                 .frame(width: 87, height: 25)
                                                 .clipShape(.rect(cornerRadius: 12))
@@ -311,6 +305,7 @@ struct ContentView: View {
                 let minSeason = seasons.min(by: {Int($0.season)! < Int($1.season)!})
                 if(minSeason != nil && $race.wrappedValue != nil && Int(minSeason!.season)! < Int($race.wrappedValue!.season)!){
                     let currentYear = Int($race.wrappedValue!.season)!
+                    firstSet = false
                     await Load(currentYear: currentYear-1)
                 }
             }
@@ -328,6 +323,7 @@ struct ContentView: View {
                 let maxSeason = seasons.max(by: {Int($0.season)! < Int($1.season)!})
                 if(maxSeason != nil && $race.wrappedValue != nil && Int(maxSeason!.season)! > Int($race.wrappedValue!.season)!){
                     let currentYear = Int($race.wrappedValue!.season)!
+                    firstSet = false
                     await Load(currentYear: currentYear+1)
                 }
                 
@@ -336,40 +332,33 @@ struct ContentView: View {
     }
     
     private func Load(currentYear: Int) async {
+        if(loadingData || loadingMeeting || firstSet){
+            return
+        }
+        
         loadingData = true
         let jolpyRepo = JolpyF1Repository()
         
-        if(seasons.count<=0){
-            let result = await jolpyRepo.GetSeasons()
-            if(result?.MRData.SeasonTable != nil){
-                self.seasons = result?.MRData.SeasonTable?.Seasons ?? []
-            }
-        }
-        
         let data = await jolpyRepo.GetMeetings(forYear: currentYear)
         $races.wrappedValue = data?.MRData.RaceTable?.Races ?? []
-        _ = await SelectRace()
         
         if(currentYear>2023) {
             let openF1Repo = OpenF1Repository()
             let meetings = await openF1Repo.LoadMeetingsData(forYear: currentYear)
             self.$meetings.wrappedValue = meetings ?? []
-            
-            let drivers = await openF1Repo.GetDrivers()
-            self.$drivers.wrappedValue = drivers ?? []
         }
         else {
             self.$meetings.wrappedValue = []
-            self.$drivers.wrappedValue = []
         }
         
+        _ = await SelectRace()
         
+        firstSet = true
         loadingData = false
     }
     
     private func SelectRace(round: Int? = nil) async -> Race? {
         loadingMeeting = true
-        loadingRace = true
         
         $meeting.wrappedValue = nil
         $race.wrappedValue = nil
@@ -379,19 +368,24 @@ struct ContentView: View {
             if(round != nil){
                 let race = $races.wrappedValue.first(where: {$0.round == String(round!)})
                 self.$race.wrappedValue = race
+                loadingMeeting = false
                 return race
             }
             
             $races.wrappedValue.sort(by: {$0.datetime! < $1.datetime!})
             let race = $races.wrappedValue.first(where: {Calendar.current.date(byAdding: .init(day: 1), to: $0.datetime!)! > Date()})
             self.$race.wrappedValue = race ?? $races.wrappedValue.last
+            loadingMeeting = false
             return race
         }
+        
+        loadingMeeting = false
         return nil
     }
     
     private func LoadCurrentRaceData() async {
         if($race.wrappedValue != nil){
+            
             let f1Repo = FormulaOneRepository()
             let image = await f1Repo.GetCircuitImage(circuit: $race.wrappedValue!.Circuit.circuitName)
             
@@ -399,19 +393,14 @@ struct ContentView: View {
                 self.$circuitImage.wrappedValue = image
             }
             
-            loadingMeeting = false
-            
             let meeting = $meetings.wrappedValue.filter({$0.meeting_name == $race.wrappedValue!.raceName})
             self.$meeting.wrappedValue = meeting.first
         }
         
-        loadingRace = false
-        loadingMeeting = false
-
         computeFurturVisibleIndicators()
     }
 }
 
 #Preview {
-    ContentView()
+    RaceView(seasons: [Season(season: "2023", url: ""),Season(season: "2024", url: "")])
 }

@@ -13,7 +13,12 @@ public class JolpyF1Repository {
     public func GetSeasons() async -> JolpiRacesData? {
         let url = baseUrl + "/seasons/?format=json&limit=100"
         let response:JolpiRacesData? = await fetch(url: url)
-        return response
+        if(response?.MRData.SeasonTable != nil){
+            var newResponse = response!
+            newResponse.MRData.SeasonTable!.Seasons.sort(by: { $0.season > $1.season })
+            return newResponse
+        }
+        return nil
     }
     
     public func GetMeetings(forYear:Int) async -> JolpiRacesData? {
@@ -47,6 +52,18 @@ public class JolpyF1Repository {
     
     public func GetResults(forYear:Int, forRound:String) async -> JolpiRacesData? {
         let url = baseUrl + "/\(forYear)/\(forRound)/results/?format=json&limit=100"
+        let response:JolpiRacesData? = await fetch(url: url)
+        return response
+    }
+    
+    public func GetDriverStandings(forYear:Int) async -> JolpiRacesData? {
+        let url = baseUrl + "/\(forYear)/driverstandings/?format=json&limit=100"
+        let response:JolpiRacesData? = await fetch(url: url)
+        return response
+    }
+    
+    public func GetConstructorStandings(forYear:Int) async -> JolpiRacesData? {
+        let url = baseUrl + "/\(forYear)/constructorstandings/?format=json&limit=100"
         let response:JolpiRacesData? = await fetch(url: url)
         return response
     }

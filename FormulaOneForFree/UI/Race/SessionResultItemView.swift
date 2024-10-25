@@ -34,7 +34,7 @@ struct SessionResultItemView: View {
                 AsyncImage(url: URL(string: driverUrl!)) { image in
                     image.resizable()
                 } placeholder: {
-                    Color.red
+                    ProgressView()
                 }
                 .frame(width: 50, height: 50)
                 .clipShape(.rect(cornerRadius: 12))
@@ -54,7 +54,7 @@ struct SessionResultItemView: View {
                     AsyncImage(url: URL(string: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2024/\(team!.replacingOccurrences(of: " ", with: "-")).png")) { image in
                         image.resizable()
                     } placeholder: {
-                        Color.red
+                        ProgressView()
                     }
                     .frame(width: 87, height: 25)
                     .clipShape(.rect(cornerRadius: 12))
