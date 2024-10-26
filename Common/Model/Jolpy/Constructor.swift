@@ -6,7 +6,12 @@
 //
 import Foundation
 
-public struct Constructor: Codable {
+public struct ConstructorTable: Codable {
+    var Constructors: [Constructor]
+}
+
+public struct Constructor: Codable, Identifiable, Hashable {
+    public var id: UUID { UUID() }
     let constructorId: String
     let url: String
     let name: String

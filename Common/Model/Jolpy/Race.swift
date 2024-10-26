@@ -13,8 +13,9 @@ public struct RaceTable: Codable {
 }
 
 public struct Race: Codable, Identifiable, Equatable {
-    public let id = UUID()
-        public static func == (lhs: Race, rhs: Race) -> Bool {
+    public var id: UUID { UUID() }
+    
+    public static func == (lhs: Race, rhs: Race) -> Bool {
         lhs.raceName == rhs.raceName && lhs.season == rhs.season
     }
     

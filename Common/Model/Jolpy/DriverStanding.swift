@@ -7,7 +7,7 @@
 
 import Foundation
 public struct DriverStanding : Codable, Identifiable {
-    public let id = UUID()
+    public var id: UUID { UUID() }
     
     let position: String?
     let positionText: String

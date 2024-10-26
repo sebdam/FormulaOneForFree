@@ -15,6 +15,7 @@ public struct MRData: Codable {
     var limit:String?
     var offset:String?
     var total:String?
+    var ConstructorTable: ConstructorTable?
     var SeasonTable: SeasonTable?
     var RaceTable: RaceTable?
     var StandingsTable: StandingsTable?
