@@ -10,35 +10,57 @@ import SwiftUI
 struct DriverStandingView: View {
     @Binding var driverStanding: DriverStanding
     @Binding var driver: Driver?
+    @State var forWidget: Bool = false
+    @State var image: UIImage? = nil
     
     var body: some View {
         HStack {
-            if(driver?.headshot_url != nil) {
+            if(forWidget && image != nil) {
+                Image(uiImage: image!)
+                    .resizable()
+                    .frame(width: forWidget ? 25 : 50, height: forWidget ? 25 : 50)
+                    .clipShape(.rect(cornerRadius: 12))
+                
+                Spacer()
+            }
+            else if(!forWidget && driver?.headshot_url != nil) {
                 AsyncImage(url: URL(string: driver!.headshot_url!)) { image in
                     image.resizable()
                 } placeholder: {
                     ProgressView()
                 }
-                .frame(width: 50, height: 50)
+                .frame(width: forWidget ? 25 : 50, height: forWidget ? 25 : 50)
                 .clipShape(.rect(cornerRadius: 12))
             }
-            else {
+            else if(!forWidget) {
                 Image("helmetWithDriver")
                     .resizable()
                     .frame(width: 50, height: 50)
                     .clipShape(.rect(cornerRadius: 12))
             }
-            Text("#\(driverStanding.positionText)")
-            Spacer()
+            
+            if(!forWidget) {
+                Text("#\(driverStanding.positionText)")
+                Spacer()
+            }
+            
             VStack {
-                Text("\(driverStanding.Driver.givenName) \(driverStanding.Driver.familyName)")
+                if(forWidget && image == nil) {
+                    Text("\(driverStanding.Driver.code ?? driverStanding.Driver.driverId)")
+                }
+                else {
+                    Text("\(driverStanding.Driver.givenName) \(driverStanding.Driver.familyName)")
+                }
+                
                 Text("\(driverStanding.wins) wins")
             }
+            .frame(maxWidth: .infinity)
+            
             Spacer()
-            Text("\(driverStanding.points) pts")
+            
+            Text("\(driverStanding.points) pts").frame(maxWidth: .infinity)
         }
         .font(.caption2)
-        
     }
 }
 
