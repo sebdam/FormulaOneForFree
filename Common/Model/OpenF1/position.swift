@@ -7,7 +7,8 @@
 import Foundation
 
 public struct Position: Identifiable, Codable {
-    public var id: UUID { UUID() }
+    private let _id = UUID()
+    public var id: UUID { _id }
     
     let date : Date
     

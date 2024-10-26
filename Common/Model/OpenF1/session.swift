@@ -11,7 +11,8 @@ public struct Session: Identifiable, Codable, Equatable {
         lhs.session_key == rhs.session_key && lhs.year == rhs.year && lhs.meeting_key == rhs.meeting_key
     }
     
-    public var id: UUID { UUID() }
+    private let _id = UUID()
+    public var id: UUID { _id }
     
     let circuit_key : Int
     let circuit_short_name : String

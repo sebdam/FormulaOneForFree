@@ -11,7 +11,8 @@ public struct ConstructorTable: Codable {
 }
 
 public struct Constructor: Codable, Identifiable, Hashable {
-    public var id: UUID { UUID() }
+    private let _id = UUID()
+    public var id: UUID { _id }
     let constructorId: String
     let url: String
     let name: String

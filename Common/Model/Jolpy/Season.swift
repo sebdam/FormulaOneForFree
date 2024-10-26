@@ -8,7 +8,9 @@
 import Foundation
 
 public struct Season: Codable, Identifiable {
-    public var id: UUID { UUID() }
+    private let _id = UUID()
+    public var id: UUID { _id }
+    
     let season: String
     let url: String
     

@@ -7,7 +7,8 @@
 import Foundation
 
 public struct Driver: Codable, Identifiable, Hashable {
-    public var id: UUID { UUID() }
+    private let _id = UUID()
+    public var id: UUID { _id }
     
     let broadcast_name:String
     let country_code: String?
