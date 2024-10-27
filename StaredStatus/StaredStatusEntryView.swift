@@ -31,11 +31,20 @@ struct MediumStaredStatusEntryView : View {
         VStack {
             if(entry.driver != nil && entry.driverStandings != nil){
                 Spacer()
-                DriverStandingView(driverStanding: .constant(entry.driverStandings!), driver: .constant(entry.driver!), forWidget: true, image:entry.driverImage)
+                HStack {
+                    Text("#\(entry.driverStandings!.positionText)")
+                    DriverStandingView(driverStanding: .constant(entry.driverStandings!), driver: .constant(entry.driver!), forWidget: true, image:entry.driverImage)
+                        .frame(maxWidth: .infinity)
+                }
             }
             if(entry.constructorStandings != nil){
                 Spacer()
-                ConstructorStandingView(constructorStanding: .constant(entry.constructorStandings!), forWidget: true, image: entry.constructorImage)
+                HStack {
+                    Text("#\(entry.constructorStandings!.positionText)")
+                    ConstructorStandingView(constructorStanding: .constant(entry.constructorStandings!), forWidget: true, image: entry.constructorImage)
+                        .frame(maxWidth: .infinity)
+                }
+                
             }
             
             if(entry.driverStandings == nil && entry.constructorStandings == nil){
@@ -67,16 +76,25 @@ struct SmallStaredStatusEntryView : View {
         VStack(spacing: 5) {
             if(entry.driver != nil && entry.driverStandings != nil){
                 Spacer()
-                DriverStandingView(driverStanding: .constant(entry.driverStandings!), driver: .constant(entry.driver!), forWidget: true)
+                HStack {
+                    Text("#\(entry.driverStandings!.positionText)")
+                    DriverStandingView(driverStanding: .constant(entry.driverStandings!), driver: .constant(entry.driver!), forWidget: true)
+                        .frame(maxWidth: .infinity)
+                }
             }
             if(entry.constructorStandings != nil){
                 Spacer()
-                ConstructorStandingView(constructorStanding: .constant(entry.constructorStandings!), forWidget: true)
+                HStack {
+                    Text("#\(entry.constructorStandings!.positionText)")
+                    ConstructorStandingView(constructorStanding: .constant(entry.constructorStandings!), forWidget: true)
+                        .frame(maxWidth: .infinity)
+                }
             }
             
             if(entry.driverStandings == nil && entry.constructorStandings == nil){
                 Spacer()
                 Text("No data available")
+                    .frame(maxWidth: .infinity)
             }
             
             Spacer()
@@ -103,16 +121,20 @@ struct AccessoryRectangularStaredStatusEntryView : View {
             if(entry.driver != nil && entry.driverStandings != nil){
                 HStack{
                     Image(systemName: "star")
+                    Text("\(entry.driverStandings!.positionText)")
                     Spacer()
                     DriverStandingView(driverStanding: .constant(entry.driverStandings!), driver: .constant(entry.driver!), forWidget: true)
+                        .frame(maxWidth: .infinity)
                 }
                 
             }
             if(entry.constructorStandings != nil){
                 HStack{
                     Image(systemName: "star")
+                    Text("\(entry.driverStandings!.positionText)")
                     Spacer()
                     ConstructorStandingView(constructorStanding: .constant(entry.constructorStandings!), forWidget: true)
+                        .frame(maxWidth: .infinity)
                 }
             }
             if(entry.driverStandings == nil && entry.constructorStandings == nil){
@@ -120,6 +142,7 @@ struct AccessoryRectangularStaredStatusEntryView : View {
                     Image(systemName: "star")
                     Spacer()
                     Text("No data available")
+                        .frame(maxWidth: .infinity)
                 }
             }
         }
