@@ -6,6 +6,6 @@
 //
 
 public struct Preferences: Codable {
-    var driverId: Int
+    var driverId: String
     var constructorId: String
 }

@@ -6,48 +6,88 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct ConstructorStandingView: View {
     @Binding var constructorStanding: ConstructorStanding
     @State var forWidget: Bool = false
     @State var image: UIImage? = nil
+    @State var condensed: Bool = false
     var body: some View {
         HStack {
-            if(forWidget && image != nil) {
-                Image(uiImage: image!)
-                    .resizable()
-                    .frame(width: 87, height: 25)
-                    .clipShape(.rect(cornerRadius: 12))
-                
-                Spacer()
-            }
-            else if(!forWidget) {
-                AsyncImage(url: URL(string: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2024/\(constructorStanding.Constructor.constructorId.replacingOccurrences(of: "_", with: "-")).png")) { image in
-                    image.resizable()
-                } placeholder: {
-                    ProgressView()
+            if(forWidget) {
+                if(image != nil) {
+                    Image(uiImage: image!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 80, height: 80)
+                        .clipShape(.rect(cornerRadius: 12))
                 }
-                .frame(width: 87, height: 25)
-                .clipShape(.rect(cornerRadius: 12))
                 
-                Text("#\(constructorStanding.positionText)")
-                Spacer()
+                VStack {
+                    if(!condensed){
+                        Spacer()
+                    }
+                    Text("\(constructorStanding.Constructor.name)")
+                    if(!condensed){
+                        Spacer()
+                    }
+                    Text("\(constructorStanding.wins) wins")
+                    if(!condensed){
+                        Spacer()
+                    }
+                    Text("\(constructorStanding.points) pts")
+                    if(!condensed){
+                        Spacer()
+                    }
+                }
+                .frame(maxWidth:.infinity)
             }
-            
-            VStack {
-                Text("\(constructorStanding.Constructor.name)")
+            else {
+                let teamImage = UIImage(named: constructorStanding.Constructor.name.replacingOccurrences(of: " ", with: "-"))
+                
+                if(teamImage != nil){
+                    Image(uiImage: teamImage!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30, height: 30)
+                        .clipShape(.rect(cornerRadius: 12))
+                }
+                else {
+                    Image(systemName: "car")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30, height: 30)
+                        .clipShape(.rect(cornerRadius: 12))
+                }
+                
+                Text("\(constructorStanding.positionText != "-" ? "#" + constructorStanding.positionText : "")")
+                
+                if(!condensed){
+                    Spacer()
+                }
+                
+                Text("\(constructorStanding.Constructor.name)").frame(maxWidth: .infinity)
+                if(!condensed){
+                    Spacer()
+                }
                 Text("\(constructorStanding.wins) wins")
+                if(!condensed){
+                    Spacer()
+                }
+                Text("\(constructorStanding.points) pts")
             }
-            .frame(maxWidth: .infinity)
-            
-            Spacer()
-            
-            Text("\(constructorStanding.points) pts").frame(maxWidth: .infinity)
         }
         .font(.caption2)
     }
 }
 
-#Preview {
+#Preview("For app") {
     ConstructorStandingView(constructorStanding: .constant(ConstructorStanding(position: "42", positionText: "42", points: "12", wins: "6", Constructor: Constructor(constructorId: "42", url: "", name: "Ferrari", nationality: "Italy"))))
+}
+#Preview("For Widget with image", traits: .fixedLayout(width: 182, height: 170)) {
+    ConstructorStandingView(constructorStanding: .constant(ConstructorStanding(position: "42", positionText: "42", points: "12", wins: "6", Constructor: Constructor(constructorId: "42", url: "", name: "Ferrari", nationality: "Italy"))), forWidget: true, image: UIImage(named: "Ferrari"))
+}
+#Preview("For Widget without image", traits: .fixedLayout(width: 182, height: 170)) {
+    ConstructorStandingView(constructorStanding: .constant(ConstructorStanding(position: "42", positionText: "42", points: "12", wins: "6", Constructor: Constructor(constructorId: "42", url: "", name: "Ferrari", nationality: "Italy"))), forWidget: true)
 }

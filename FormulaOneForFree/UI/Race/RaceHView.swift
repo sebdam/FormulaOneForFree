@@ -33,7 +33,7 @@ struct RaceHView: View {
                 VStack {
                     ScrollViewReader { proxy in
                         ScrollView(.horizontal, showsIndicators: false){
-                            HStack(spacing: 30){
+                            LazyHStack(spacing: 30){
                                 if(loadingPrev){
                                     VStack {
                                         ProgressView()
@@ -114,7 +114,7 @@ struct RaceHView: View {
         
         let jolpyRepo = JolpyF1Repository()
         
-        let data = await jolpyRepo.GetMeetings(forYear: currentYear)
+        let data = await jolpyRepo.GetRacesData(forYear: currentYear)
         $races.wrappedValue.insert(contentsOf: data?.MRData.RaceTable?.Races ?? [], at: 0)
         
         if(currentYear>=2023) {

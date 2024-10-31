@@ -7,15 +7,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "42499AE4-6B6D-4CEC-9DD2-34C5C6AE2439"
-            shouldBeEnabled = "Yes"
+            uuid = "9765CD16-AFAA-48B5-88EC-5932A8FB3773"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FormulaOneForFree/UI/Race/RaceHView.swift"
+            filePath = "FormulaOneForFree/UI/Championship/SeasonView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>

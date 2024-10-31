@@ -9,6 +9,9 @@ import SwiftUI
 
 struct SeasonView: View {
     @State var constructor: Bool = false
+    @State private var type="Constructors"
+    var types=["Constructors","Drivers"]
+    
     @State var loading: Bool = false
     @State var season:Season
     @State var driversStandings: [DriverStanding]
@@ -26,8 +29,15 @@ struct SeasonView: View {
                 }
             }
             else {
-                Toggle("Constructor", isOn: $constructor).padding()
-                if(!constructor){
+                Picker("Choose the standings type", selection: $type){
+                    ForEach(types, id:\.self) {
+                        Text($0)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .disabled(loading)
+                
+                if(type=="Drivers"){
                     if($driversStandings.wrappedValue.count<=0){
                         Spacer()
                         Text("No data ...")
@@ -62,28 +72,24 @@ struct SeasonView: View {
                 await LoadData()
             }
         }
-        .onChange(of: constructor) {
-            Task { @MainActor in
-                await LoadData()
-            }
-        }
     }
     
     private func LoadData() async {
+        if(loading){
+            return
+        }
+        
         loading = true
         let jolpyRepo = JolpyF1Repository()
         
-        if(!constructor){
-            let result = await jolpyRepo.GetDriverStandings(forYear: Int(season.season)!)
-            if(result?.MRData.StandingsTable?.StandingsLists != nil){
-                self.$driversStandings.wrappedValue = result?.MRData.StandingsTable?.StandingsLists.first?.DriverStandings ?? []
-            }
+        var result = await jolpyRepo.GetDriverStandings(forYear: Int(season.season)!)
+        if(result?.MRData.StandingsTable?.StandingsLists != nil){
+            self.$driversStandings.wrappedValue = result?.MRData.StandingsTable?.StandingsLists.first?.DriverStandings ?? []
         }
-        else {
-            let result = await jolpyRepo.GetConstructorStandings(forYear: Int(season.season)!)
-            if(result?.MRData.StandingsTable?.StandingsLists != nil){
-                self.$constructorsStandings.wrappedValue = result?.MRData.StandingsTable?.StandingsLists.first?.ConstructorStandings ?? []
-            }
+    
+        result = await jolpyRepo.GetConstructorStandings(forYear: Int(season.season)!)
+        if(result?.MRData.StandingsTable?.StandingsLists != nil){
+            self.$constructorsStandings.wrappedValue = result?.MRData.StandingsTable?.StandingsLists.first?.ConstructorStandings ?? []
         }
         
         loading = false
@@ -91,7 +97,8 @@ struct SeasonView: View {
 }
 
 #Preview {
-    SeasonView(season: Season(season: "2024", url: ""),
+    SeasonView(
+        season: Season(season: "2024", url: ""),
                driversStandings: [DriverStanding(position: "2", positionText: "2", points: "42", wins: "12", Driver: JolpyDriver(driverId: "42", url: "", givenName: "Seb Dam", familyName: "Damiens-Cerf", dateOfBirth: "1979-04-25", nationality: "France", permanentNumber: nil, code: "SDC"), Constructors: [Constructor(constructorId: "42", url: "", name: "Ferrari", nationality: "Italy")])],
                constructorsStandings: [ConstructorStanding(position: "42", positionText: "42", points: "12", wins: "6", Constructor: Constructor(constructorId: "42", url: "", name: "Ferrari", nationality: "Italy"))],
                drivers:[])

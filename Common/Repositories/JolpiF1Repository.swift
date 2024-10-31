@@ -21,7 +21,7 @@ public class JolpyF1Repository {
         return nil
     }
     
-    public func GetMeetings(forYear:Int) async -> JolpiRacesData? {
+    public func GetRacesData(forYear:Int) async -> JolpiRacesData? {
         let url = baseUrl + "/\(forYear)/races/?format=json"
         
         let response:JolpiRacesData? = await fetch(url: url)
@@ -50,20 +50,52 @@ public class JolpyF1Repository {
         return response
     }
     
+    public func GetRaces(forYear:Int) async -> JolpiRacesData? {
+        let url = baseUrl + "/\(forYear)/races/?format=json"
+        let response:JolpiRacesData? = await fetch(url: url)
+        return response
+    }
+    
+    public func GetDrivers(forYear:Int, driverId: String? = nil) async -> JolpiRacesData? {
+        var url = baseUrl + "/\(forYear)/drivers/"
+        if(driverId != nil){
+            url = url + "\(driverId!)/"
+        }
+        url = url + "?format=json&limit=100"
+        let response:JolpiRacesData? = await fetch(url: url)
+        return response
+    }
+    
     public func GetResults(forYear:Int, forRound:String) async -> JolpiRacesData? {
         let url = baseUrl + "/\(forYear)/\(forRound)/results/?format=json&limit=100"
         let response:JolpiRacesData? = await fetch(url: url)
         return response
     }
     
-    public func GetDriverStandings(forYear:Int) async -> JolpiRacesData? {
-        let url = baseUrl + "/\(forYear)/driverstandings/?format=json&limit=100"
+    public func GetDriverStandings(forYear:Int, forPosition:Int? = nil, forDriverId:String? = nil) async -> JolpiRacesData? {
+        var url = baseUrl + "/\(forYear)/"
+        if(forDriverId != nil){
+            url = url + "drivers/\(forDriverId!)/"
+        }
+        url = url + "driverstandings/"
+        if(forPosition != nil){
+            url = url + "\(forPosition!)/"
+        }
+        url = url+"?format=json&limit=100"
         let response:JolpiRacesData? = await fetch(url: url)
         return response
     }
     
-    public func GetConstructorStandings(forYear:Int) async -> JolpiRacesData? {
-        let url = baseUrl + "/\(forYear)/constructorstandings/?format=json&limit=100"
+    public func GetConstructorStandings(forYear:Int, forPosition:Int? = nil, forConstructorId:String? = nil) async -> JolpiRacesData? {
+        var url = baseUrl + "/\(forYear)/"
+        if(forConstructorId != nil){
+            url = url + "constructors/\(forConstructorId!)/"
+        }
+        url = url + "constructorstandings/"
+        if(forPosition != nil){
+            url = url + "\(forPosition!)/"
+        }
+        url = url+"?format=json&limit=100"
         let response:JolpiRacesData? = await fetch(url: url)
         return response
     }

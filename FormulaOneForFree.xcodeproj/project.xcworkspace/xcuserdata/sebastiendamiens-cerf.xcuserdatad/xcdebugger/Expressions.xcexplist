@@ -6,6 +6,14 @@
          contextName = "closure #1 in ContentView.Load():ContentView.swift">
       </ContextState>
       <ContextState
+         contextName = "HomeView.LoadData():HomeView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "$jolpyDrivers.wrappedValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContentView.SelectRace(round:):ContentView.swift">
          <PersistentStrings>
             <PersistentString
@@ -50,6 +58,17 @@
                value = "$drivers.wrappedValue">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in Provider.getTimeline(in:completion:):Provider.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "constructorImage!.size.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SeasonView.body.getter:SeasonView.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

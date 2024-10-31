@@ -49,8 +49,14 @@ public class OpenF1Repository {
         return response
     }
     
-    public func GetDrivers() async -> [Driver]? {
-        let url = baseUrl + "/drivers"
+    public func GetDrivers(driver_number:Int? = nil, name_acronym:String? = nil) async -> [Driver]? {
+        var url = baseUrl + "/drivers"
+        if(driver_number != nil){
+            url = url + "?driver_number=\(driver_number!)"
+        }
+        if(name_acronym != nil){
+            url = url + "?name_acronym=\(name_acronym!)"
+        }
         let response:[Driver]? = await fetch(url: url)
         
         if(response != nil){
@@ -139,26 +145,4 @@ public class OpenF1Repository {
         }
         return newSession
     }
-}
-
-
-extension ParseStrategy where Self == Date.ISO8601FormatStyle {
-    static var iso8601withFractionalSeconds: Self { .init(includingFractionalSeconds: true) }
-}
-
-extension JSONDecoder.DateDecodingStrategy {
-    static let iso8601withOptionalFractionalSeconds = custom {
-        let string = try $0.singleValueContainer().decode(String.self)
-        do {
-            return try .init(string, strategy: .iso8601withFractionalSeconds)
-        } catch {
-            return try .init(string, strategy: .iso8601)
-        }
-    }
-}
-
-extension Array where Element: Hashable {
-  func unique() -> [Element] {
-    Array(Set(self))
-  }
 }

@@ -36,37 +36,32 @@ struct StaredProvider: TimelineProvider {
             
             let repoJolpyF1 = JolpyF1Repository()
             let currentYear = Calendar.current.component(.year, from: Date())
+            let jolpyDrivers = await repoJolpyF1.GetDrivers(forYear: currentYear, driverId: preferences.driverId)
+            let jolpyDriver = jolpyDrivers?.MRData.DriverTable?.Drivers.first
             
-            let constructorsStandings = await repoJolpyF1.GetConstructorStandings(forYear: currentYear)
-            let driversStandings = await repoJolpyF1.GetDriverStandings(forYear: currentYear)
+            let constructorsStandings = await repoJolpyF1.GetConstructorStandings(forYear: currentYear, forConstructorId: preferences.constructorId)
+            let driversStandings = await repoJolpyF1.GetDriverStandings(forYear: currentYear, forDriverId: preferences.driverId)
             
-            let firstConstructorStanding = constructorsStandings?.MRData.StandingsTable?.StandingsLists.first?.ConstructorStandings?.first(where: {$0.Constructor.constructorId == preferences.constructorId})
+            let firstConstructorStanding = constructorsStandings?.MRData.StandingsTable?.StandingsLists.first?.ConstructorStandings?.first
+            let firstDriverStanding = driversStandings?.MRData.StandingsTable?.StandingsLists.first?.DriverStandings?.first
             
             var constructorImage: UIImage? = nil
-            if(firstConstructorStanding?.Constructor.constructorId != nil){
-                do {
-                    let response = try await URLSession.shared.data(from: URL(string: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2024/\(firstConstructorStanding!.Constructor.constructorId.replacingOccurrences(of: "_", with: "-")).png")!)
-                    constructorImage = UIImage(data: response.0)
-                }
-                catch {
-                    print("Unexpected error while fetching constructor image: \(error).")
-                }
+            if(firstConstructorStanding?.Constructor.name != nil){
+                constructorImage = UIImage(named: firstConstructorStanding!.Constructor.name.replacingOccurrences(of: " ", with: "-"))?.resized(toWidth: 400, isOpaque: false)
             }
             
-            let repoOpenF1 = OpenF1Repository()
-            let drivers = await repoOpenF1.GetDrivers()
-            
-            let driver = drivers?.first(where: {$0.driver_number == preferences.driverId})
-            
-            var firstDriverStanding: DriverStanding? = nil
             var driverImage: UIImage? = nil
-            if(driver != nil){
-                firstDriverStanding = driversStandings?.MRData.StandingsTable?.StandingsLists.first?.DriverStandings?.first(where: {$0.Driver.code == driver?.name_acronym})
+            var driver: Driver? = nil
+            
+            if(jolpyDriver?.code != nil){
+                let repoOpenF1 = OpenF1Repository()
+                let drivers = await repoOpenF1.GetDrivers(name_acronym: jolpyDriver?.code)
+                driver = drivers?.first
                 
                 if(driver?.headshot_url != nil){
                     do {
                         let response = try await URLSession.shared.data(from: URL(string: driver!.headshot_url!)!)
-                        driverImage = UIImage(data: response.0)
+                        driverImage = UIImage(data: response.0)?.resized(toWidth: 400, isOpaque: false)
                     }
                     catch {
                         print("Unexpected error while fetching driver image: \(error).")

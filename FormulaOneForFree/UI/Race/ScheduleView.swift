@@ -11,14 +11,21 @@ struct ScheduleView: View {
     @Binding var dueDate: Date?
     @State var scheduleName = "Name"
     @State private var duration = ""
+    @State var haveSession: Bool = false
     
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     static var durationFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.allowedUnits = [.day, .hour, .minute, .second]
         formatter.unitsStyle = .abbreviated
         formatter.zeroFormattingBehavior = .dropLeading
+        return formatter
+    }()
+    
+    static var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM hh:mm"
         return formatter
     }()
     
@@ -26,21 +33,38 @@ struct ScheduleView: View {
         HStack {
             //Overdue
             if(dueDate != nil && Date().timeIntervalSince(dueDate!) > 0){
-                Image(systemName: "checkmark.square").foregroundStyle(.green).padding([.leading])
+                Image(systemName: "checkmark.square")
+                    .foregroundStyle(.green)
             }
+            //Future
             else if(dueDate != nil){
-                Image(systemName: "timer").foregroundStyle(.green)
+                Image(systemName: "timer")
+                    .foregroundStyle(.green)
             }
+            //Canceled
             else {
-                Image(systemName: "questionmark.circle").foregroundStyle(.red)
+                Image(systemName: "questionmark.circle")
+                    .foregroundStyle(.red)
             }
             
             Text(scheduleName)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .font(.caption)
             
             if(dueDate != nil && Date().timeIntervalSince(dueDate!) <= 0){
-                Text(duration).font(.footnote)
-                    .frame(maxWidth: .infinity)
+                Text(duration)
+                    .font(.footnote)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+            }
+            else if(dueDate != nil) {
+                Text("\(ScheduleView.dateFormatter.string(from: dueDate!))")
+                    .font(.footnote)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+            }
+            else {
+                Text("Canceled")
+                    .font(.footnote)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
         .onReceive(timer) { _ in
@@ -60,7 +84,7 @@ struct ScheduleView: View {
 }
 
 #Preview("overdue") {
-    ScheduleView(dueDate: Binding<Date?>.constant(Calendar.current.date(byAdding: .day, value: -2, to: Date())) , scheduleName: "OD")
+    ScheduleView(dueDate: Binding<Date?>.constant(Calendar.current.date(byAdding: .day, value: -2, to: Date())) , scheduleName: "OD", haveSession: true)
 }
 
 #Preview("future") {

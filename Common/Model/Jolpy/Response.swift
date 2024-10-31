@@ -18,5 +18,6 @@ public struct MRData: Codable {
     var ConstructorTable: ConstructorTable?
     var SeasonTable: SeasonTable?
     var RaceTable: RaceTable?
+    var DriverTable: DriverTable?
     var StandingsTable: StandingsTable?
 }

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct PreferencesView: View {
-    @State var drivers: [Driver] = []
+    @State var drivers: [JolpyDriver] = []
     @State var constructors: [Constructor] = []
     
-    @State var selectedDriver: Driver?
+    @State var selectedDriver: JolpyDriver?
     @State var selectedConstructor: Constructor?
     
     var body: some View {
@@ -22,7 +22,7 @@ struct PreferencesView: View {
                     VStack {
                         Picker(selection: $selectedDriver) {
                             ForEach(drivers, id: \.id) { driver in
-                                Text(driver.full_name).tag(driver as Driver?)
+                                Text("\(driver.givenName) \(driver.familyName)").tag(driver as JolpyDriver?)
                             }
                         } label: {
                             Text("Driver")
@@ -30,13 +30,13 @@ struct PreferencesView: View {
                         
                         let selectedDriver = $selectedDriver.wrappedValue
                         HStack {
-                            Text(selectedDriver?.country_code ?? "")
+                            Text(selectedDriver?.nationality ?? "")
                                 .frame(maxWidth: .infinity)
                             Spacer()
-                            Text(selectedDriver?.name_acronym ?? "")
+                            Text(selectedDriver?.code ?? "")
                                 .frame(maxWidth: .infinity)
                             Spacer()
-                            Text(selectedDriver?.team_name ?? "")
+                            Text(selectedDriver?.dateOfBirth ?? "")
                                 .frame(maxWidth: .infinity)
                         }
                         
@@ -64,7 +64,7 @@ struct PreferencesView: View {
                                 .frame(maxWidth: .infinity)
                         }
                         
-                        Text("Choose your favorite constructor, and you'll see him in the 'Stared constructor widget'")
+                        Text("Choose your favorite constructor, and you'll see it in the 'Stared constructor widget'")
                             .multilineTextAlignment(.center)
                             .font(.footnote)
                             .frame(maxWidth: .infinity)
@@ -86,16 +86,16 @@ struct PreferencesView: View {
     
     private func SavePreferences() async {
         let repo = PreferencesRepository()
-        let pref = Preferences(driverId: selectedDriver!.driver_number, constructorId: selectedConstructor!.constructorId)
+        let pref = Preferences(driverId: selectedDriver!.driverId, constructorId: selectedConstructor!.constructorId)
         repo.savePreferences(preferences: pref)
     }
 }
 
 #Preview {
     let drivers = [
-        Driver(broadcast_name: "SDC", country_code: "FRA", driver_number: 42, first_name: "Sébastien", full_name: "Sébastien Damiens-Cerf", headshot_url: "", last_name: "Damiens-Cerf", meeting_key: 42, name_acronym: "SDC", session_key: 42, team_colour: nil, team_name: "Ferrari"),
-        Driver(broadcast_name: "POLO", country_code: "BEL", driver_number: 43, first_name: "Paul", full_name: "Paul Damiens-Cerf", headshot_url: "", last_name: "Damiens-Cerf", meeting_key: 42, name_acronym: "POLO", session_key: 42, team_colour: nil, team_name: "Ferrari"),
-        Driver(broadcast_name: "MALO", country_code: "GB", driver_number: 44, first_name: "Malo", full_name: "Malo Damiens-Cerf", headshot_url: "", last_name: "Damiens-Cerf", meeting_key: 42, name_acronym: "MALO", session_key: 42, team_colour: nil, team_name: "Ferrari")
+        JolpyDriver(driverId: "max_verstappen", url: "", givenName: "Max", familyName: "Verstappen", dateOfBirth: "2024-01-01", nationality: "Dutch", permanentNumber: "33", code: "VER"),
+        JolpyDriver(driverId: "max_verstappen", url: "", givenName: "Max", familyName: "Verstappen", dateOfBirth: "2024-01-01", nationality: "Dutch", permanentNumber: "33", code: "VER"),
+        JolpyDriver(driverId: "max_verstappen", url: "", givenName: "Max", familyName: "Verstappen", dateOfBirth: "2024-01-01", nationality: "Dutch", permanentNumber: "33", code: "VER")
     ]
     
     let constructors = [

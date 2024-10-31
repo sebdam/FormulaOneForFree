@@ -10,8 +10,9 @@ struct HomeView: View {
     @State var loadingData = false
     @State var seasons: [Season] = []
     @State var drivers: [Driver] = []
+    @State var jolpyDrivers: [JolpyDriver] = []
     @State var constructors: [Constructor] = []
-    @State var preferences: Preferences = .init(driverId: 0, constructorId: "0")
+    @State var preferences: Preferences = .init(driverId: "0", constructorId: "0")
     
     var body: some View {
         if(loadingData){
@@ -31,9 +32,9 @@ struct HomeView: View {
                     ChampionshipView(seasons: seasons, drivers: drivers)
                 }
                 Tab("Preferences", systemImage: "star") {
-                    PreferencesView(drivers: drivers,
+                    PreferencesView(drivers: jolpyDrivers,
                                     constructors: constructors,
-                                    selectedDriver: $drivers.wrappedValue.first(where: {$0.driver_number == preferences.driverId}),
+                                    selectedDriver: $jolpyDrivers.wrappedValue.first(where: {$0.driverId == preferences.driverId}),
                                     selectedConstructor: $constructors.wrappedValue.first(where: {$0.constructorId == preferences.constructorId}))
                 }
             }.onAppear() {
@@ -61,19 +62,22 @@ struct HomeView: View {
             self.$drivers.wrappedValue = drivers ?? []
         }
         
-        if(self.$constructors.wrappedValue.count<=0) {
-            let lastSeason = self.$seasons.wrappedValue.last?.seasonAsInt
-            if(lastSeason != nil){
-                let constructors = await jolpyRepo.GetConstructors(forYear: lastSeason!)
-                self.$constructors.wrappedValue = constructors?.MRData.ConstructorTable?.Constructors ?? []
-            }
+        let lastSeason = self.$seasons.wrappedValue.max(by: {$0.seasonAsInt<$1.seasonAsInt})
+        if(self.$jolpyDrivers.wrappedValue.count<=0 && lastSeason?.seasonAsInt != nil) {
+            let drivers = await jolpyRepo.GetDrivers(forYear: lastSeason!.seasonAsInt)
+            self.$jolpyDrivers.wrappedValue = drivers?.MRData.DriverTable?.Drivers ?? []
+        }
+        
+        if(self.$constructors.wrappedValue.count<=0 && lastSeason?.seasonAsInt != nil) {
+            let constructors = await jolpyRepo.GetConstructors(forYear: lastSeason!.seasonAsInt)
+            self.$constructors.wrappedValue = constructors?.MRData.ConstructorTable?.Constructors ?? []
         }
         
         let prefRepo = PreferencesRepository()
         var preferences = prefRepo.readPreferences()
         
-        if($drivers.wrappedValue.first(where: {$0.driver_number == preferences.driverId}) == nil){
-            preferences.driverId = self.$drivers.wrappedValue.first!.driver_number
+        if($jolpyDrivers.wrappedValue.first(where: {$0.driverId == preferences.driverId}) == nil){
+            preferences.driverId = self.$jolpyDrivers.wrappedValue.first!.driverId
         }
         if($constructors.wrappedValue.first(where: {$0.constructorId == preferences.constructorId}) == nil){
             preferences.constructorId = self.$constructors.wrappedValue.first!.constructorId
@@ -93,6 +97,11 @@ struct HomeView: View {
         Driver(broadcast_name: "MALO", country_code: "GB", driver_number: 44, first_name: "Malo", full_name: "Malo Damiens-Cerf", headshot_url: "", last_name: "Damiens-Cerf", meeting_key: 42, name_acronym: "MALO", session_key: 42, team_colour: nil, team_name: "Ferrari")
     ]
     
+    let jolpyDrivers = [
+        JolpyDriver(driverId: "max_verstappen", url: "", givenName: "Max", familyName: "Verstappen", dateOfBirth: "2024-01-01", nationality: "Dutch", permanentNumber: "33", code: "VER"),
+        JolpyDriver(driverId: "max_verstappen", url: "", givenName: "Max", familyName: "Verstappen", dateOfBirth: "2024-01-01", nationality: "Dutch", permanentNumber: "33", code: "VER"),
+        JolpyDriver(driverId: "max_verstappen", url: "", givenName: "Max", familyName: "Verstappen", dateOfBirth: "2024-01-01", nationality: "Dutch", permanentNumber: "33", code: "VER")
+    ]
     
     let constructors = [
         Constructor(constructorId: "42", url: "", name: "Redbull F1 Racing", nationality: "AUS"),
@@ -102,6 +111,7 @@ struct HomeView: View {
     
     HomeView(seasons: [Season(season: "2024", url: "")],
              drivers: drivers,
+             jolpyDrivers: jolpyDrivers,
              constructors: constructors,
-             preferences: .init(driverId: 42, constructorId: "42"))
+             preferences: .init(driverId: "42", constructorId: "42"))
 }
