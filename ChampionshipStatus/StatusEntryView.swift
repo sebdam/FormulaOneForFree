@@ -10,7 +10,7 @@ import WidgetKit
 
 struct statusEntryView : View {
     @Environment(\.widgetFamily) var family: WidgetFamily
-    var entry: Provider.Entry
+    var entry: WidgetTimeLineProvider.Entry
     
     static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -32,7 +32,7 @@ struct statusEntryView : View {
 }
 
 struct MediumChampionshipStatusEntryView : View {
-    var entry: Provider.Entry
+    var entry: WidgetTimeLineProvider.Entry
     
     var body: some View {
         VStack {
@@ -65,7 +65,7 @@ struct MediumChampionshipStatusEntryView : View {
 }
 
 struct SmallChampionshipStatusEntryView : View {
-    var entry: Provider.Entry
+    var entry: WidgetTimeLineProvider.Entry
     
     var body: some View {
         VStack {
@@ -99,7 +99,7 @@ struct SmallChampionshipStatusEntryView : View {
 
 
 struct AccessoryRectangularChampionshipStatusEntryView : View {
-    var entry: Provider.Entry
+    var entry: WidgetTimeLineProvider.Entry
     
     var body: some View {
         HStack {
@@ -120,7 +120,7 @@ struct AccessoryRectangularChampionshipStatusEntryView : View {
 
 
 struct AccessoryInlineChampionshipStatusEntryView : View {
-    var entry: Provider.Entry
+    var entry: WidgetTimeLineProvider.Entry
     
     var body: some View {
         HStack {

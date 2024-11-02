@@ -20,7 +20,7 @@ struct ConstructorStandingView: View {
                     Image(uiImage: image!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 80, height: 80)
+                        .frame(width: condensed ? 40 : 80, height: condensed ? 40 : 80)
                         .clipShape(.rect(cornerRadius: 12))
                 }
                 

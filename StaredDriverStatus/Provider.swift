@@ -2,7 +2,7 @@
 //  Provider.swift
 //  FormulaOneForFree
 //
-//  Created by Sébastien Damiens-Cerf on 26/10/2024.
+//  Created by Sébastien Damiens-Cerf on 02/11/2024.
 //
 import UIKit
 import WidgetKit

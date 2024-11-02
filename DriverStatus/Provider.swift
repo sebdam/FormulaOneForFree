@@ -2,13 +2,13 @@
 //  Provider.swift
 //  FormulaOneForFree
 //
-//  Created by Sébastien Damiens-Cerf on 26/10/2024.
+//  Created by Sébastien Damiens-Cerf on 31/10/2024.
 //
 import UIKit
 import WidgetKit
 
 extension WidgetTimeLineProvider : TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        getStaredTimeline(in: context, completion: completion)
+        getChampionshipTimeline(in: context, completion: completion)
     }
 }

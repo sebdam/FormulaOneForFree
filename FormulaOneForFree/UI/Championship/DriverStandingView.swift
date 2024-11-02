@@ -21,7 +21,7 @@ struct DriverStandingView: View {
                     Image(uiImage: image!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 80, height: 80)
+                        .frame(width: condensed ? 40 : 80, height: condensed ? 40 : 80)
                         .clipShape(.rect(cornerRadius: 12))
                 }
                 
@@ -94,13 +94,22 @@ struct DriverStandingView: View {
     )
 }
 
-#Preview("For Widget with image", traits: .fixedLayout(width: 182, height: 170)) {
+#Preview("For Medium Widget with image", traits: .fixedLayout(width: 182, height: 170)) {
     DriverStandingView(driverStanding: .constant(
         DriverStanding(position: "2", positionText: "2", points: "42", wins: "12", Driver: JolpyDriver(driverId: "42", url: "", givenName: "Seb Dam", familyName: "Damiens-Cerf", dateOfBirth: "1979-04-25", nationality: "France", permanentNumber: "42", code: "SDC"), Constructors: [Constructor(constructorId: "42", url: "", name: "Ferrari", nationality: "Italy")])),
         driver: .constant(
             Driver(broadcast_name: "SDC", country_code: "SDC", driver_number: 42, first_name: "Sébastien", full_name: "Sébastien Damiens-Cerf", headshot_url: "", last_name: "Damiens-Cerf", meeting_key: 42, name_acronym: "SDC", session_key: 42, team_colour: nil, team_name: "Ferrari")),
         forWidget: true,
         image: UIImage(named: "Ferrari"))
+}
+#Preview("For Small Widget with image", traits: .fixedLayout(width: 91, height: 170)) {
+    DriverStandingView(driverStanding: .constant(
+        DriverStanding(position: "2", positionText: "2", points: "42", wins: "12", Driver: JolpyDriver(driverId: "42", url: "", givenName: "Seb Dam", familyName: "Damiens-Cerf", dateOfBirth: "1979-04-25", nationality: "France", permanentNumber: "42", code: "SDC"), Constructors: [Constructor(constructorId: "42", url: "", name: "Ferrari", nationality: "Italy")])),
+        driver: .constant(
+            Driver(broadcast_name: "SDC", country_code: "SDC", driver_number: 42, first_name: "Sébastien", full_name: "Sébastien Damiens-Cerf", headshot_url: "", last_name: "Damiens-Cerf", meeting_key: 42, name_acronym: "SDC", session_key: 42, team_colour: nil, team_name: "Ferrari")),
+        forWidget: true,
+        image: UIImage(named: "Ferrari"),
+        condensed: true)
 }
 #Preview("For Widget without image", traits: .fixedLayout(width: 182, height: 170)) {
     DriverStandingView(driverStanding: .constant(

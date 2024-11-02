@@ -11,7 +11,7 @@ struct StaredStatus: Widget {
     let kind: String = "StaredStatus"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: StaredProvider()) { entry in
+        StaticConfiguration(kind: kind, provider: WidgetTimeLineProvider()) { entry in
             if #available(iOS 17.0, *) {
                 staredStatusEntryView(entry: entry)
                     .containerBackground(.fill.tertiary, for: .widget)

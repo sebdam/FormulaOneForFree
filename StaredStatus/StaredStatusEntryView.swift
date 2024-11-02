@@ -10,7 +10,7 @@ import WidgetKit
 
 struct staredStatusEntryView : View {
     @Environment(\.widgetFamily) var family: WidgetFamily
-    var entry: StaredProvider.Entry
+    var entry: WidgetTimeLineProvider.Entry
     
     static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -31,7 +31,7 @@ struct staredStatusEntryView : View {
 }
 
 struct MediumStaredStatusEntryView : View {
-    var entry: StaredProvider.Entry
+    var entry: WidgetTimeLineProvider.Entry
     
     var body: some View {
         VStack {
@@ -71,7 +71,7 @@ struct MediumStaredStatusEntryView : View {
 }
 
 struct SmallStaredStatusEntryView : View {
-    var entry: StaredProvider.Entry
+    var entry: WidgetTimeLineProvider.Entry
     
     var body: some View {
         VStack {
@@ -112,7 +112,7 @@ struct SmallStaredStatusEntryView : View {
 
 
 struct AccessoryRectangularStaredStatusEntryView : View {
-    var entry: StaredProvider.Entry
+    var entry: WidgetTimeLineProvider.Entry
     
     var body: some View {
         HStack {

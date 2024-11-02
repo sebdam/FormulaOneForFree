@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141208322CD4453100F81747 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3612CCBAD6E0080D2D5 /* WidgetKit.framework */; };
+		141208332CD4453100F81747 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3632CCBAD6F0080D2D5 /* SwiftUI.framework */; };
+		1412083E2CD4453200F81747 /* ConstructorStatusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 141208312CD4453100F81747 /* ConstructorStatusExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1412086C2CD614DA00F81747 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3612CCBAD6E0080D2D5 /* WidgetKit.framework */; };
+		1412086D2CD614DA00F81747 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3632CCBAD6F0080D2D5 /* SwiftUI.framework */; };
+		141208782CD614DC00F81747 /* StaredDriverStatusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1412086B2CD614DA00F81747 /* StaredDriverStatusExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		141208822CD614F200F81747 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3612CCBAD6E0080D2D5 /* WidgetKit.framework */; };
+		141208832CD614F200F81747 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3632CCBAD6F0080D2D5 /* SwiftUI.framework */; };
+		1412088E2CD614F300F81747 /* StaredConstructorStatusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 141208812CD614F200F81747 /* StaredConstructorStatusExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		142606012CD3EE1C00945D16 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3612CCBAD6E0080D2D5 /* WidgetKit.framework */; };
+		142606022CD3EE1C00945D16 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3632CCBAD6F0080D2D5 /* SwiftUI.framework */; };
+		1426060D2CD3EE1D00945D16 /* DriverStatusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 142606002CD3EE1C00945D16 /* DriverStatusExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		14C807372CCD508B00CF2BAF /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3612CCBAD6E0080D2D5 /* WidgetKit.framework */; };
 		14C807382CCD508B00CF2BAF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3632CCBAD6F0080D2D5 /* SwiftUI.framework */; };
 		14C807432CCD508D00CF2BAF /* StaredStatusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 14C807362CCD508B00CF2BAF /* StaredStatusExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -16,6 +28,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1412083C2CD4453200F81747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14C82E3F2CC3A5B100BDC3BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 141208302CD4453100F81747;
+			remoteInfo = ConstructorStatusExtension;
+		};
+		141208762CD614DC00F81747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14C82E3F2CC3A5B100BDC3BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1412086A2CD614DA00F81747;
+			remoteInfo = StaredDriverStatusExtension;
+		};
+		1412088C2CD614F300F81747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14C82E3F2CC3A5B100BDC3BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 141208802CD614F200F81747;
+			remoteInfo = StaredConstructorStatusExtension;
+		};
+		1426060B2CD3EE1D00945D16 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14C82E3F2CC3A5B100BDC3BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 142605FF2CD3EE1C00945D16;
+			remoteInfo = DriverStatusExtension;
+		};
 		14C807412CCD508D00CF2BAF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 14C82E3F2CC3A5B100BDC3BD /* Project object */;
@@ -49,8 +89,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				1412088E2CD614F300F81747 /* StaredConstructorStatusExtension.appex in Embed Foundation Extensions */,
 				14D5C36F2CCBAD700080D2D5 /* ChampionshipStatusExtension.appex in Embed Foundation Extensions */,
 				14C807432CCD508D00CF2BAF /* StaredStatusExtension.appex in Embed Foundation Extensions */,
+				141208782CD614DC00F81747 /* StaredDriverStatusExtension.appex in Embed Foundation Extensions */,
+				1412083E2CD4453200F81747 /* ConstructorStatusExtension.appex in Embed Foundation Extensions */,
+				1426060D2CD3EE1D00945D16 /* DriverStatusExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -58,6 +102,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		141208312CD4453100F81747 /* ConstructorStatusExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ConstructorStatusExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		141208432CD4454000F81747 /* ConstructorStatusExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ConstructorStatusExtension.entitlements; sourceTree = "<group>"; };
+		1412086B2CD614DA00F81747 /* StaredDriverStatusExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StaredDriverStatusExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		141208812CD614F200F81747 /* StaredConstructorStatusExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StaredConstructorStatusExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		141208932CD614FE00F81747 /* StaredConstructorStatusExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StaredConstructorStatusExtension.entitlements; sourceTree = "<group>"; };
+		141208942CD6150B00F81747 /* StaredDriverStatusExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StaredDriverStatusExtension.entitlements; sourceTree = "<group>"; };
+		142606002CD3EE1C00945D16 /* DriverStatusExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DriverStatusExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1426063F2CD40D0500945D16 /* DriverStatusExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DriverStatusExtension.entitlements; sourceTree = "<group>"; };
 		14C807172CCD116E00CF2BAF /* ChampionshipStatusExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChampionshipStatusExtension.entitlements; sourceTree = "<group>"; };
 		14C807362CCD508B00CF2BAF /* StaredStatusExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StaredStatusExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C807482CCD50AB00CF2BAF /* StaredStatusExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StaredStatusExtension.entitlements; sourceTree = "<group>"; };
@@ -68,6 +120,198 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		141208422CD4453200F81747 /* Exceptions for "ConstructorStatus" folder in "ConstructorStatusExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 141208302CD4453100F81747 /* ConstructorStatusExtension */;
+		};
+		141208542CD447F600F81747 /* Exceptions for "Common" folder in "ConstructorStatusExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ArrayExtensions.swift,
+				Constructors.xcassets,
+				JSONDecoderExtensions.swift,
+				Model/Jolpy/Circuit.swift,
+				Model/Jolpy/Constructor.swift,
+				Model/Jolpy/ConstructorStanding.swift,
+				Model/Jolpy/DriverStanding.swift,
+				Model/Jolpy/JolpyDriver.swift,
+				Model/Jolpy/Location.swift,
+				Model/Jolpy/Race.swift,
+				Model/Jolpy/Response.swift,
+				Model/Jolpy/Result.swift,
+				Model/Jolpy/Schedule.swift,
+				Model/Jolpy/Season.swift,
+				Model/Jolpy/Standings.swift,
+				Model/OpenF1/driver.swift,
+				Model/OpenF1/lap.swift,
+				Model/OpenF1/meeting.swift,
+				Model/OpenF1/position.swift,
+				Model/OpenF1/session.swift,
+				Model/Preferences/Preferences.swift,
+				Model/Widgets/Entry.swift,
+				Repositories/Formula1Repository.swift,
+				Repositories/JolpiF1Repository.swift,
+				Repositories/OpenF1Repository.swift,
+				Repositories/PreferencesRepository.swift,
+				UIImageExtensions.swift,
+				WidgetTimeLineProvider.swift,
+			);
+			target = 141208302CD4453100F81747 /* ConstructorStatusExtension */;
+		};
+		141208662CD4484900F81747 /* Exceptions for "FormulaOneForFree" folder in "ConstructorStatusExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				UI/Championship/ConstructorStandingView.swift,
+			);
+			target = 141208302CD4453100F81747 /* ConstructorStatusExtension */;
+		};
+		1412087C2CD614DC00F81747 /* Exceptions for "StaredDriverStatus" folder in "StaredDriverStatusExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1412086A2CD614DA00F81747 /* StaredDriverStatusExtension */;
+		};
+		141208922CD614F300F81747 /* Exceptions for "StaredConstructorStatus" folder in "StaredConstructorStatusExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 141208802CD614F200F81747 /* StaredConstructorStatusExtension */;
+		};
+		141208AD2CD6152C00F81747 /* Exceptions for "Common" folder in "StaredDriverStatusExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ArrayExtensions.swift,
+				Constructors.xcassets,
+				JSONDecoderExtensions.swift,
+				Model/Jolpy/Circuit.swift,
+				Model/Jolpy/Constructor.swift,
+				Model/Jolpy/ConstructorStanding.swift,
+				Model/Jolpy/DriverStanding.swift,
+				Model/Jolpy/JolpyDriver.swift,
+				Model/Jolpy/Location.swift,
+				Model/Jolpy/Race.swift,
+				Model/Jolpy/Response.swift,
+				Model/Jolpy/Result.swift,
+				Model/Jolpy/Schedule.swift,
+				Model/Jolpy/Season.swift,
+				Model/Jolpy/Standings.swift,
+				Model/OpenF1/driver.swift,
+				Model/OpenF1/lap.swift,
+				Model/OpenF1/meeting.swift,
+				Model/OpenF1/position.swift,
+				Model/OpenF1/session.swift,
+				Model/Preferences/Preferences.swift,
+				Model/Widgets/Entry.swift,
+				Repositories/Formula1Repository.swift,
+				Repositories/JolpiF1Repository.swift,
+				Repositories/OpenF1Repository.swift,
+				Repositories/PreferencesRepository.swift,
+				UIImageExtensions.swift,
+				WidgetTimeLineProvider.swift,
+			);
+			target = 1412086A2CD614DA00F81747 /* StaredDriverStatusExtension */;
+		};
+		141208AE2CD6152C00F81747 /* Exceptions for "Common" folder in "StaredConstructorStatusExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ArrayExtensions.swift,
+				Constructors.xcassets,
+				JSONDecoderExtensions.swift,
+				Model/Jolpy/Circuit.swift,
+				Model/Jolpy/Constructor.swift,
+				Model/Jolpy/ConstructorStanding.swift,
+				Model/Jolpy/DriverStanding.swift,
+				Model/Jolpy/JolpyDriver.swift,
+				Model/Jolpy/Location.swift,
+				Model/Jolpy/Race.swift,
+				Model/Jolpy/Response.swift,
+				Model/Jolpy/Result.swift,
+				Model/Jolpy/Schedule.swift,
+				Model/Jolpy/Season.swift,
+				Model/Jolpy/Standings.swift,
+				Model/OpenF1/driver.swift,
+				Model/OpenF1/lap.swift,
+				Model/OpenF1/meeting.swift,
+				Model/OpenF1/position.swift,
+				Model/OpenF1/session.swift,
+				Model/Preferences/Preferences.swift,
+				Model/Widgets/Entry.swift,
+				Repositories/Formula1Repository.swift,
+				Repositories/JolpiF1Repository.swift,
+				Repositories/OpenF1Repository.swift,
+				Repositories/PreferencesRepository.swift,
+				UIImageExtensions.swift,
+				WidgetTimeLineProvider.swift,
+			);
+			target = 141208802CD614F200F81747 /* StaredConstructorStatusExtension */;
+		};
+		141208D02CD6159B00F81747 /* Exceptions for "FormulaOneForFree" folder in "StaredConstructorStatusExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				UI/Championship/ConstructorStandingView.swift,
+			);
+			target = 141208802CD614F200F81747 /* StaredConstructorStatusExtension */;
+		};
+		141208D22CD615A400F81747 /* Exceptions for "FormulaOneForFree" folder in "StaredDriverStatusExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				UI/Championship/DriverStandingView.swift,
+			);
+			target = 1412086A2CD614DA00F81747 /* StaredDriverStatusExtension */;
+		};
+		142606112CD3EE1D00945D16 /* Exceptions for "DriverStatus" folder in "DriverStatusExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 142605FF2CD3EE1C00945D16 /* DriverStatusExtension */;
+		};
+		1426061F2CD4079300945D16 /* Exceptions for "Common" folder in "DriverStatusExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ArrayExtensions.swift,
+				Constructors.xcassets,
+				JSONDecoderExtensions.swift,
+				Model/Jolpy/Circuit.swift,
+				Model/Jolpy/Constructor.swift,
+				Model/Jolpy/ConstructorStanding.swift,
+				Model/Jolpy/DriverStanding.swift,
+				Model/Jolpy/JolpyDriver.swift,
+				Model/Jolpy/Location.swift,
+				Model/Jolpy/Race.swift,
+				Model/Jolpy/Response.swift,
+				Model/Jolpy/Result.swift,
+				Model/Jolpy/Schedule.swift,
+				Model/Jolpy/Season.swift,
+				Model/Jolpy/Standings.swift,
+				Model/OpenF1/driver.swift,
+				Model/OpenF1/lap.swift,
+				Model/OpenF1/meeting.swift,
+				Model/OpenF1/position.swift,
+				Model/OpenF1/session.swift,
+				Model/Preferences/Preferences.swift,
+				Model/Widgets/Entry.swift,
+				Repositories/Formula1Repository.swift,
+				Repositories/JolpiF1Repository.swift,
+				Repositories/OpenF1Repository.swift,
+				Repositories/PreferencesRepository.swift,
+				UIImageExtensions.swift,
+				WidgetTimeLineProvider.swift,
+			);
+			target = 142605FF2CD3EE1C00945D16 /* DriverStatusExtension */;
+		};
+		1426063E2CD40AF700945D16 /* Exceptions for "FormulaOneForFree" folder in "DriverStatusExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				UI/Championship/DriverStandingView.swift,
+			);
+			target = 142605FF2CD3EE1C00945D16 /* DriverStatusExtension */;
+		};
 		14C807442CCD508D00CF2BAF /* Exceptions for "StaredStatus" folder in "StaredStatusExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -79,6 +323,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Model/Widgets/Entry.swift,
+				WidgetTimeLineProvider.swift,
 			);
 			target = 14C82E462CC3A5B100BDC3BD /* FormulaOneForFree */;
 		};
@@ -112,16 +357,9 @@
 				Repositories/OpenF1Repository.swift,
 				Repositories/PreferencesRepository.swift,
 				UIImageExtensions.swift,
+				WidgetTimeLineProvider.swift,
 			);
 			target = 14C807352CCD508B00CF2BAF /* StaredStatusExtension */;
-		};
-		14C807622CCD52EC00CF2BAF /* Exceptions for "Common" folder in "ChampionshipStatusExtension" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Model/Preferences/Preferences.swift,
-				Repositories/PreferencesRepository.swift,
-			);
-			target = 14D5C35E2CCBAD6E0080D2D5 /* ChampionshipStatusExtension */;
 		};
 		14C8076B2CCD54A900CF2BAF /* Exceptions for "FormulaOneForFree" folder in "StaredStatusExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -149,6 +387,38 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		141208342CD4453100F81747 /* ConstructorStatus */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				141208422CD4453200F81747 /* Exceptions for "ConstructorStatus" folder in "ConstructorStatusExtension" target */,
+			);
+			path = ConstructorStatus;
+			sourceTree = "<group>";
+		};
+		1412086E2CD614DA00F81747 /* StaredDriverStatus */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1412087C2CD614DC00F81747 /* Exceptions for "StaredDriverStatus" folder in "StaredDriverStatusExtension" target */,
+			);
+			path = StaredDriverStatus;
+			sourceTree = "<group>";
+		};
+		141208842CD614F200F81747 /* StaredConstructorStatus */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				141208922CD614F300F81747 /* Exceptions for "StaredConstructorStatus" folder in "StaredConstructorStatusExtension" target */,
+			);
+			path = StaredConstructorStatus;
+			sourceTree = "<group>";
+		};
+		142606032CD3EE1C00945D16 /* DriverStatus */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				142606112CD3EE1D00945D16 /* Exceptions for "DriverStatus" folder in "DriverStatusExtension" target */,
+			);
+			path = DriverStatus;
+			sourceTree = "<group>";
+		};
 		14C807392CCD508B00CF2BAF /* StaredStatus */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -162,6 +432,10 @@
 			exceptions = (
 				14D5C4552CCBDA570080D2D5 /* Exceptions for "FormulaOneForFree" folder in "ChampionshipStatusExtension" target */,
 				14C8076B2CCD54A900CF2BAF /* Exceptions for "FormulaOneForFree" folder in "StaredStatusExtension" target */,
+				1426063E2CD40AF700945D16 /* Exceptions for "FormulaOneForFree" folder in "DriverStatusExtension" target */,
+				141208662CD4484900F81747 /* Exceptions for "FormulaOneForFree" folder in "ConstructorStatusExtension" target */,
+				141208D22CD615A400F81747 /* Exceptions for "FormulaOneForFree" folder in "StaredDriverStatusExtension" target */,
+				141208D02CD6159B00F81747 /* Exceptions for "FormulaOneForFree" folder in "StaredConstructorStatusExtension" target */,
 			);
 			path = FormulaOneForFree;
 			sourceTree = "<group>";
@@ -178,8 +452,11 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				14C8074E2CCD517E00CF2BAF /* Exceptions for "Common" folder in "FormulaOneForFree" target */,
-				14C807622CCD52EC00CF2BAF /* Exceptions for "Common" folder in "ChampionshipStatusExtension" target */,
 				14C807502CCD52A600CF2BAF /* Exceptions for "Common" folder in "StaredStatusExtension" target */,
+				1426061F2CD4079300945D16 /* Exceptions for "Common" folder in "DriverStatusExtension" target */,
+				141208542CD447F600F81747 /* Exceptions for "Common" folder in "ConstructorStatusExtension" target */,
+				141208AD2CD6152C00F81747 /* Exceptions for "Common" folder in "StaredDriverStatusExtension" target */,
+				141208AE2CD6152C00F81747 /* Exceptions for "Common" folder in "StaredConstructorStatusExtension" target */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -187,6 +464,42 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1412082E2CD4453100F81747 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				141208332CD4453100F81747 /* SwiftUI.framework in Frameworks */,
+				141208322CD4453100F81747 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		141208682CD614DA00F81747 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1412086D2CD614DA00F81747 /* SwiftUI.framework in Frameworks */,
+				1412086C2CD614DA00F81747 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1412087E2CD614F200F81747 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				141208832CD614F200F81747 /* SwiftUI.framework in Frameworks */,
+				141208822CD614F200F81747 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		142605FD2CD3EE1C00945D16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				142606022CD3EE1C00945D16 /* SwiftUI.framework in Frameworks */,
+				142606012CD3EE1C00945D16 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14C807332CCD508B00CF2BAF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -218,12 +531,20 @@
 		14C82E3E2CC3A5B100BDC3BD = {
 			isa = PBXGroup;
 			children = (
+				141208942CD6150B00F81747 /* StaredDriverStatusExtension.entitlements */,
+				141208932CD614FE00F81747 /* StaredConstructorStatusExtension.entitlements */,
+				141208432CD4454000F81747 /* ConstructorStatusExtension.entitlements */,
+				1426063F2CD40D0500945D16 /* DriverStatusExtension.entitlements */,
 				14C807482CCD50AB00CF2BAF /* StaredStatusExtension.entitlements */,
 				14C807172CCD116E00CF2BAF /* ChampionshipStatusExtension.entitlements */,
 				14D5C3752CCBAF500080D2D5 /* Common */,
 				14C82E492CC3A5B100BDC3BD /* FormulaOneForFree */,
 				14D5C3652CCBAD6F0080D2D5 /* ChampionshipStatus */,
 				14C807392CCD508B00CF2BAF /* StaredStatus */,
+				142606032CD3EE1C00945D16 /* DriverStatus */,
+				141208342CD4453100F81747 /* ConstructorStatus */,
+				1412086E2CD614DA00F81747 /* StaredDriverStatus */,
+				141208842CD614F200F81747 /* StaredConstructorStatus */,
 				14D5C3602CCBAD6E0080D2D5 /* Frameworks */,
 				14C82E482CC3A5B100BDC3BD /* Products */,
 			);
@@ -235,6 +556,10 @@
 				14C82E472CC3A5B100BDC3BD /* FormulaOneForFree.app */,
 				14D5C35F2CCBAD6E0080D2D5 /* ChampionshipStatusExtension.appex */,
 				14C807362CCD508B00CF2BAF /* StaredStatusExtension.appex */,
+				142606002CD3EE1C00945D16 /* DriverStatusExtension.appex */,
+				141208312CD4453100F81747 /* ConstructorStatusExtension.appex */,
+				1412086B2CD614DA00F81747 /* StaredDriverStatusExtension.appex */,
+				141208812CD614F200F81747 /* StaredConstructorStatusExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,6 +576,94 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		141208302CD4453100F81747 /* ConstructorStatusExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1412083F2CD4453200F81747 /* Build configuration list for PBXNativeTarget "ConstructorStatusExtension" */;
+			buildPhases = (
+				1412082D2CD4453100F81747 /* Sources */,
+				1412082E2CD4453100F81747 /* Frameworks */,
+				1412082F2CD4453100F81747 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				141208342CD4453100F81747 /* ConstructorStatus */,
+			);
+			name = ConstructorStatusExtension;
+			packageProductDependencies = (
+			);
+			productName = ConstructorStatusExtension;
+			productReference = 141208312CD4453100F81747 /* ConstructorStatusExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		1412086A2CD614DA00F81747 /* StaredDriverStatusExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 141208792CD614DC00F81747 /* Build configuration list for PBXNativeTarget "StaredDriverStatusExtension" */;
+			buildPhases = (
+				141208672CD614DA00F81747 /* Sources */,
+				141208682CD614DA00F81747 /* Frameworks */,
+				141208692CD614DA00F81747 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1412086E2CD614DA00F81747 /* StaredDriverStatus */,
+			);
+			name = StaredDriverStatusExtension;
+			packageProductDependencies = (
+			);
+			productName = StaredDriverStatusExtension;
+			productReference = 1412086B2CD614DA00F81747 /* StaredDriverStatusExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		141208802CD614F200F81747 /* StaredConstructorStatusExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1412088F2CD614F300F81747 /* Build configuration list for PBXNativeTarget "StaredConstructorStatusExtension" */;
+			buildPhases = (
+				1412087D2CD614F200F81747 /* Sources */,
+				1412087E2CD614F200F81747 /* Frameworks */,
+				1412087F2CD614F200F81747 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				141208842CD614F200F81747 /* StaredConstructorStatus */,
+			);
+			name = StaredConstructorStatusExtension;
+			packageProductDependencies = (
+			);
+			productName = StaredConstructorStatusExtension;
+			productReference = 141208812CD614F200F81747 /* StaredConstructorStatusExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		142605FF2CD3EE1C00945D16 /* DriverStatusExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 142606102CD3EE1D00945D16 /* Build configuration list for PBXNativeTarget "DriverStatusExtension" */;
+			buildPhases = (
+				142605FC2CD3EE1C00945D16 /* Sources */,
+				142605FD2CD3EE1C00945D16 /* Frameworks */,
+				142605FE2CD3EE1C00945D16 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				142606032CD3EE1C00945D16 /* DriverStatus */,
+			);
+			name = DriverStatusExtension;
+			packageProductDependencies = (
+			);
+			productName = DriverStatusExtension;
+			productReference = 142606002CD3EE1C00945D16 /* DriverStatusExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		14C807352CCD508B00CF2BAF /* StaredStatusExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14C807452CCD508D00CF2BAF /* Build configuration list for PBXNativeTarget "StaredStatusExtension" */;
@@ -288,6 +701,10 @@
 			dependencies = (
 				14D5C36E2CCBAD700080D2D5 /* PBXTargetDependency */,
 				14C807422CCD508D00CF2BAF /* PBXTargetDependency */,
+				1426060C2CD3EE1D00945D16 /* PBXTargetDependency */,
+				1412083D2CD4453200F81747 /* PBXTargetDependency */,
+				141208772CD614DC00F81747 /* PBXTargetDependency */,
+				1412088D2CD614F300F81747 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				14C82E492CC3A5B100BDC3BD /* FormulaOneForFree */,
@@ -330,9 +747,21 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1600;
+				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					141208302CD4453100F81747 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					1412086A2CD614DA00F81747 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					141208802CD614F200F81747 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					142605FF2CD3EE1C00945D16 = {
+						CreatedOnToolsVersion = 16.1;
+					};
 					14C807352CCD508B00CF2BAF = {
 						CreatedOnToolsVersion = 16.0;
 					};
@@ -361,11 +790,43 @@
 				14C82E462CC3A5B100BDC3BD /* FormulaOneForFree */,
 				14D5C35E2CCBAD6E0080D2D5 /* ChampionshipStatusExtension */,
 				14C807352CCD508B00CF2BAF /* StaredStatusExtension */,
+				142605FF2CD3EE1C00945D16 /* DriverStatusExtension */,
+				141208302CD4453100F81747 /* ConstructorStatusExtension */,
+				1412086A2CD614DA00F81747 /* StaredDriverStatusExtension */,
+				141208802CD614F200F81747 /* StaredConstructorStatusExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1412082F2CD4453100F81747 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		141208692CD614DA00F81747 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1412087F2CD614F200F81747 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		142605FE2CD3EE1C00945D16 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14C807342CCD508B00CF2BAF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -390,6 +851,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1412082D2CD4453100F81747 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		141208672CD614DA00F81747 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1412087D2CD614F200F81747 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		142605FC2CD3EE1C00945D16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14C807322CCD508B00CF2BAF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,6 +903,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1412083D2CD4453200F81747 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 141208302CD4453100F81747 /* ConstructorStatusExtension */;
+			targetProxy = 1412083C2CD4453200F81747 /* PBXContainerItemProxy */;
+		};
+		141208772CD614DC00F81747 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1412086A2CD614DA00F81747 /* StaredDriverStatusExtension */;
+			targetProxy = 141208762CD614DC00F81747 /* PBXContainerItemProxy */;
+		};
+		1412088D2CD614F300F81747 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 141208802CD614F200F81747 /* StaredConstructorStatusExtension */;
+			targetProxy = 1412088C2CD614F300F81747 /* PBXContainerItemProxy */;
+		};
+		1426060C2CD3EE1D00945D16 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 142605FF2CD3EE1C00945D16 /* DriverStatusExtension */;
+			targetProxy = 1426060B2CD3EE1D00945D16 /* PBXContainerItemProxy */;
+		};
 		14C807422CCD508D00CF2BAF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 14C807352CCD508B00CF2BAF /* StaredStatusExtension */;
@@ -427,6 +936,262 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		141208402CD4453200F81747 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ConstructorStatusExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X7N2Q62FU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ConstructorStatus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ConstructorStatus;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.ConstructorStatus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		141208412CD4453200F81747 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ConstructorStatusExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X7N2Q62FU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ConstructorStatus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ConstructorStatus;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.ConstructorStatus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1412087A2CD614DC00F81747 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = StaredDriverStatusExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X7N2Q62FU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StaredDriverStatus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StaredDriverStatus;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.StaredDriverStatus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1412087B2CD614DC00F81747 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = StaredDriverStatusExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X7N2Q62FU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StaredDriverStatus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StaredDriverStatus;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.StaredDriverStatus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		141208902CD614F300F81747 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = StaredConstructorStatusExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X7N2Q62FU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StaredConstructorStatus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StaredConstructorStatus;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.StaredConstructorStatus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		141208912CD614F300F81747 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = StaredConstructorStatusExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X7N2Q62FU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StaredConstructorStatus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StaredConstructorStatus;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.StaredConstructorStatus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1426060E2CD3EE1D00945D16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DriverStatusExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X7N2Q62FU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DriverStatus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DriverStatus;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.DriverStatus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1426060F2CD3EE1D00945D16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DriverStatusExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X7N2Q62FU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DriverStatus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DriverStatus;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.DriverStatus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		14C807462CCD508D00CF2BAF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -449,6 +1214,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.StaredStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -477,6 +1245,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.StaredStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -735,6 +1506,42 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1412083F2CD4453200F81747 /* Build configuration list for PBXNativeTarget "ConstructorStatusExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				141208402CD4453200F81747 /* Debug */,
+				141208412CD4453200F81747 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		141208792CD614DC00F81747 /* Build configuration list for PBXNativeTarget "StaredDriverStatusExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1412087A2CD614DC00F81747 /* Debug */,
+				1412087B2CD614DC00F81747 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1412088F2CD614F300F81747 /* Build configuration list for PBXNativeTarget "StaredConstructorStatusExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				141208902CD614F300F81747 /* Debug */,
+				141208912CD614F300F81747 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		142606102CD3EE1D00945D16 /* Build configuration list for PBXNativeTarget "DriverStatusExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1426060E2CD3EE1D00945D16 /* Debug */,
+				1426060F2CD3EE1D00945D16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		14C807452CCD508D00CF2BAF /* Build configuration list for PBXNativeTarget "StaredStatusExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
