@@ -124,17 +124,17 @@ struct LiveView: View {
         var finalPositions: [DriverLocation] = []
         
         if(positions != nil){
-            let ordered = positions!.sorted(by: {$0.date ?? Date() > $1.date ?? Date() })
+            let ordered = positions!
+                .filter({$0.x != 0 && $0.y != 0})
+                .sorted(by: {$0.date ?? Date() > $1.date ?? Date() })
             
-            for position in positions! {
-                if(position.x == 0 && position.y == 0){
-                    continue
+            for driver in drivers {
+                let driverPosition = ordered.first(where: {$0.driver_number == driver.driver_number})
+                if(driverPosition != nil){
+                    var newPosition = driverPosition!
+                    newPosition.driver = driver
+                    finalPositions.append(newPosition)
                 }
-                
-                var newPosition = position
-                let driver = drivers.first(where: {$0.driver_number == position.driver_number})
-                newPosition.driver = driver
-                finalPositions.append(newPosition)
             }
             
             self.$locations.wrappedValue.removeAll()
