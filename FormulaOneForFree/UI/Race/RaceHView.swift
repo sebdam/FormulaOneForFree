@@ -43,6 +43,7 @@ struct RaceHView: View {
 
                                 ForEach($races, id:\.id){ race in
                                     let meeting = meetings.first(where: {$0.meeting_name == race.wrappedValue.raceName && $0.year == Int(race.wrappedValue.season) })
+                                    
                                     RaceDetailView(race: race, meeting: .constant(meeting), drivers: drivers)
                                         .containerRelativeFrame(.horizontal)
                                 }

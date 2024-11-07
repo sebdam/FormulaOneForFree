@@ -21,6 +21,7 @@ public struct Session: Identifiable, Codable, Equatable {
     let country_name : String
     
     let date_start : Date
+    let date_end : Date
     
     let gmt_offset : String
     let location : String

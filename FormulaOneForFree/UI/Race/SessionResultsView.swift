@@ -8,21 +8,43 @@
 import SwiftUI
 
 struct SessionResultsView: View {
-    @State var loading = true
+    @State var loading: Bool
     @State var title: String
     @State var session: Session
     @State var positions: [Position]
     @State var drivers: [Driver]
     @State var results: [Result]
     
-    init(session: Session, drivers: [Driver], results: [Result])
+    @State private var orientation: UIDeviceOrientation
+    
+    init(loading: Bool = true, session: Session, drivers: [Driver], results: [Result])
     {
+        _loading = State(initialValue: loading)
         _title = State(initialValue: session.session_name)
         _session = State(initialValue: session)
-        _positions = State(initialValue: [])
+        _positions = State(initialValue: session.positions ?? [])
         _drivers = State(initialValue: drivers)
         _results = State(initialValue: results)
+        
+        _orientation = State(initialValue: UIDevice.current.orientation.isLandscape ? UIDeviceOrientation.landscapeLeft : UIDeviceOrientation.portrait)
     }
+    
+    private func GetPositionsList() -> List<Never, ForEach<Binding<[Position]>, Binding<Position>.ID, SessionResultItemView>> {
+        return List($positions) {
+            let position = $0.wrappedValue
+            let driver = $drivers.wrappedValue.first(where: {$0.driver_number == position.driver_number})
+            let driverUrl = driver?.headshot_url
+            let driverName = driver?.broadcast_name
+            let teamName = driver?.team_name
+            let teamColor = driver?.team_colour
+            
+            let status = $results.wrappedValue.filter({$0.position == String(position.position)}).first?.status
+            
+            SessionResultItemView(positions: position.position, driverUrl: driverUrl, driverName: driverName ?? "John Doe", team: teamName, teamColor: teamColor, bestLapDuration: position.best_lap?.lap_duration, sessionDuration: position.duration, status: status)
+        }
+    }
+    
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
             if(loading){
@@ -35,19 +57,31 @@ struct SessionResultsView: View {
                 }
             } else {
                 NavigationStack {
-                    List($positions) {
-                        let position = $0.wrappedValue
-                        let driver = $drivers.wrappedValue.first(where: {$0.driver_number == position.driver_number})
-                        let driverUrl = driver?.headshot_url
-                        let driverName = driver?.broadcast_name
-                        let teamName = driver?.team_name
-                        let teamColor = driver?.team_colour
-                        
-                        let status = $results.wrappedValue.filter({$0.position == String(position.position)}).first?.status
-                        
-                        SessionResultItemView(positions: position.position, driverUrl: driverUrl, driverName: driverName ?? "John Doe", team: teamName, teamColor: teamColor, bestLapDuration: position.best_lap?.lap_duration, sessionDuration: position.duration, status: status)
+                    if(orientation.isLandscape){
+                        HStack{
+                            LiveView(session:session, drivers: drivers, locations: [])
+                                    .padding([.top])
+                                Spacer()
+                            
+                            GetPositionsList().navigationBarTitle(title)
+                        }
                     }
-                    .navigationBarTitle(title)
+                    else {
+                        GetPositionsList()
+                        .navigationBarTitle(title)
+                    }
+                }
+                .onRotate { newOrientation in
+                    orientation = newOrientation
+                }
+                .onReceive(timer) { _ in
+                    Task { @MainActor in
+                        if(session.date_start < Date() && session.date_end > Date()) {
+                            withAnimation {
+                                LoadPositions()
+                            }
+                        }
+                    }
                 }
             }
     }
@@ -64,8 +98,27 @@ struct SessionResultsView: View {
         }
     }
     
+    private func LoadPositions() {
+        Task { @MainActor in
+            let openF1Repo = OpenF1Repository()
+            let newPositions = await openF1Repo.GetPostions(meetingKey: $session.wrappedValue.meeting_key, sessionKey: $session.wrappedValue.session_key)
+            self.$session.wrappedValue.positions = newPositions
+            self.$positions.wrappedValue = newPositions ?? []
+        }
+    }
+    
 }
 
 #Preview() {
-    SessionResultsView(session: Session(circuit_key: 1, circuit_short_name: "C", country_code: "FRA", country_key: 1, country_name: "FRANCE", date_start: Date(), gmt_offset: "00:00:00Z", location: "d", meeting_key: 1, session_key: 1, session_name: "Sprint", session_type: "Sprint", year: 2024), drivers: [], results: [])
+    SessionResultsView(loading: false,
+                       session: Session(circuit_key: 14, circuit_short_name: "C", country_code: "FRA", country_key: 1, country_name: "FRANCE",
+                                        date_start: Calendar.current.date(byAdding: .day, value: 1, to: Date())!,
+                                        date_end: Calendar.current.date(byAdding: .day, value: 1, to: Date())!,
+                                        gmt_offset: "00:00:00Z", location: "d", meeting_key: 1249, session_key: 9635, session_name: "Sprint", session_type: "Sprint", year: 2024,
+                                        positions: [
+                                            Position(date: Date(), driver_number: 1, meeting_key: 1, session_key: 1, position: 1, laps: [
+                                                Lap(date_start: Date(), driver_number: 1, duration_sector_1: 1, duration_sector_2: 2, duration_sector_3: 3, i1_speed: 1, i2_speed: 1, is_pit_out_lap: false, lap_duration: 1, lap_number: 1, meeting_key: 1, session_key: 1, st_speed: 1)
+                                            ])
+                                        ]),
+                       drivers: [], results: [])
 }

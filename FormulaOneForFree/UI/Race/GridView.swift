@@ -100,7 +100,7 @@ struct GridView: View {
 
 #Preview {
     GridView(loading: false,
-             session: Session(circuit_key: 1, circuit_short_name: "C", country_code: "FRA", country_key: 1, country_name: "FRANCE", date_start: Date(), gmt_offset: "00:00:00Z", location: "d", meeting_key: 1, session_key: 1, session_name: "Sprint", session_type: "Sprint", year: 2024),
+             session: Session(circuit_key: 1, circuit_short_name: "C", country_code: "FRA", country_key: 1, country_name: "FRANCE", date_start: Date(), date_end: Date(), gmt_offset: "00:00:00Z", location: "d", meeting_key: 1, session_key: 1, session_name: "Sprint", session_type: "Sprint", year: 2024),
              positions: [
                 Position(date: Date(), driver_number: 42, meeting_key: 42, session_key: 42, position: 1),
                 Position(date: Date(), driver_number: 33, meeting_key: 42, session_key: 42, position: 2),

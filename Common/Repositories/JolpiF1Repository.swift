@@ -106,6 +106,12 @@ public class JolpyF1Repository {
         return response
     }
     
+    public func GetCircuits() async -> JolpiRacesData? {
+        let url = baseUrl + "/circuits/?format=json&limit=100"
+        let response:JolpiRacesData? = await fetch(url: url)
+        return response
+    }
+    
     func fetch<T: Decodable>(url: String) async -> T? {
         do {
             let response = try await URLSession.shared.data(from: URL(string: url)!)

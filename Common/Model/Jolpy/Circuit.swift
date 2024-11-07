@@ -7,6 +7,10 @@
 
 import Foundation
 
+public struct CircuitTable: Codable {
+    var Circuits: [Circuit]
+}
+
 public struct Circuit: Codable {
     let circuitId: String
     let url: String

@@ -16,6 +16,7 @@ public struct MRData: Codable {
     var offset:String?
     var total:String?
     var ConstructorTable: ConstructorTable?
+    var CircuitTable: CircuitTable?
     var SeasonTable: SeasonTable?
     var RaceTable: RaceTable?
     var DriverTable: DriverTable?

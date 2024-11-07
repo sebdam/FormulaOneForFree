@@ -49,6 +49,25 @@ public class OpenF1Repository {
         return response
     }
     
+    public func GetDriversLocations(meetingKey:Int, sessionKey: Int, driverNumber:Int? = nil) async -> [DriverLocation]? {
+        //For debug
+        let now = Date()
+        //let formatter = DateFormatter()
+        //formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        //let now = formatter.date(from: "2024-11-02T13:49:38Z")!
+        //EndDebug
+        
+        var url = baseUrl + "/location?meeting_key=\(meetingKey)&session_key=\(sessionKey)"
+        if(driverNumber != nil){
+            url = url + "&driver_number=\(driverNumber!)"
+        }
+        url = url + "&date>\(Calendar.current.date(byAdding: .second, value: -1, to: now)!.ISO8601Format())&date<\(now.ISO8601Format())"
+        
+        print("\(url)")
+        let response:[DriverLocation]? = await fetch(url: url)
+        return response
+    }
+    
     public func GetDrivers(driver_number:Int? = nil, name_acronym:String? = nil) async -> [Driver]? {
         var url = baseUrl + "/drivers"
         if(driver_number != nil){

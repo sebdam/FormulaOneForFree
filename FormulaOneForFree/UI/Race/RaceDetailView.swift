@@ -227,7 +227,7 @@ struct RaceDetailView: View {
                        Constructor: Constructor(constructorId: "42", url: "", name: "Ferrari", nationality: "Italy"),
                        grid: "1", laps: "54", status: "Finished")
              ])),
-                   meeting: .constant(nil),
+                   meeting: .constant(Meeting(circuit_key: 14, circuit_short_name: "Mexico City", country_code: "MEX", country_key: 42, country_name: "Mexic", date_start: Date(), gmt_offset: "", location: "", meeting_key: 42, meeting_name: "Mexico GP", meeting_official_name: "Mexico GP", year: 2024)),
                    drivers: [
                     Driver(broadcast_name: "SDC", country_code: "FRA", driver_number: 42, first_name: "Sébastien", full_name: "Sébastien Damiens-Cerf", headshot_url: "https://www.formula1.com/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/1col/image.png", last_name: "Damiens-Cerf", meeting_key: 42, name_acronym: "SDC", session_key: 42, team_colour: nil, team_name: "Ferrari")
                    ])
