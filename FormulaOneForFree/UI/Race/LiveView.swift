@@ -76,7 +76,7 @@ struct LiveView: View {
                     let flipY = false
                     let margin = 5.0
                     let trackLineWidth = 10.0
-                    let pointSize = 14.0
+                    let pointSize = 18.0
 
                     Canvas { ctx, size in
                         var points = [CGPoint]()
@@ -132,6 +132,7 @@ struct LiveView: View {
                             }
 
                             ctx.fill(scaleShape, with: .color(color))
+
                         }
                         .padding()
                     }
