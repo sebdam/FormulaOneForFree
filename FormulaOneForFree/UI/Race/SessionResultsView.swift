@@ -52,14 +52,15 @@ struct SessionResultsView: View {
                     Spacer()
                     ProgressView()
                     Spacer()
-                }.onAppear() {
+                }
+                .onAppear() {
                     LoadSessionData()
                 }
             } else {
                 NavigationStack {
                     if(orientation.isLandscape){
                         HStack{
-                            LiveView(session:session, drivers: drivers, locations: [])
+                            LiveView(session:$session, drivers: drivers, locations: [])
                                     .padding([.top])
                                 Spacer()
                             
@@ -77,9 +78,7 @@ struct SessionResultsView: View {
                 .onReceive(timer) { _ in
                     Task { @MainActor in
                         if(session.date_start < Date() && session.date_end > Date()) {
-                            withAnimation {
-                                LoadPositions()
-                            }
+                            LoadPositions()
                         }
                     }
                 }
@@ -91,8 +90,11 @@ struct SessionResultsView: View {
         Task { @MainActor in
             let openF1Repo = OpenF1Repository()
             let newSession = await openF1Repo.LoadSessionData(session: $session.wrappedValue)
-            self.$session.wrappedValue.positions = newSession.positions
-            self.$positions.wrappedValue = newSession.positions ?? []
+            
+            self.session = newSession
+            if(newSession.positions != nil){
+                self.positions = newSession.positions!
+            }
             
             loading = false
         }
@@ -102,8 +104,12 @@ struct SessionResultsView: View {
         Task { @MainActor in
             let openF1Repo = OpenF1Repository()
             let newPositions = await openF1Repo.GetPostions(meetingKey: $session.wrappedValue.meeting_key, sessionKey: $session.wrappedValue.session_key)
-            self.$session.wrappedValue.positions = newPositions
-            self.$positions.wrappedValue = newPositions ?? []
+            
+            if(newPositions != nil){
+                self.session.positions = newPositions!
+                self.positions = newPositions!
+            }
+            
         }
     }
     

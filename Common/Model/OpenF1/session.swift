@@ -8,7 +8,7 @@ import Foundation
 
 public struct Session: Identifiable, Codable, Equatable {
     public static func == (lhs: Session, rhs: Session) -> Bool {
-        lhs.session_key == rhs.session_key && lhs.year == rhs.year && lhs.meeting_key == rhs.meeting_key
+        lhs.session_key == rhs.session_key && lhs.year == rhs.year && lhs.meeting_key == rhs.meeting_key && rhs.positions == lhs.positions
     }
     
     private let _id = UUID()

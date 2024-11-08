@@ -6,9 +6,13 @@
 //
 import Foundation
 
-public struct Position: Identifiable, Codable {
+public struct Position: Identifiable, Equatable, Codable {
     private let _id = UUID()
     public var id: UUID { _id }
+    
+    public static func == (lhs: Position, rhs: Position) -> Bool {
+        lhs.id == rhs.id
+    }
     
     let date : Date
     
