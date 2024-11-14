@@ -19,6 +19,11 @@
 		142606012CD3EE1C00945D16 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3612CCBAD6E0080D2D5 /* WidgetKit.framework */; };
 		142606022CD3EE1C00945D16 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3632CCBAD6F0080D2D5 /* SwiftUI.framework */; };
 		1426060D2CD3EE1D00945D16 /* DriverStatusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 142606002CD3EE1C00945D16 /* DriverStatusExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		14BF77802CE602F100E7D43B /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 14BF777F2CE602F100E7D43B /* CachedAsyncImage */; };
+		14BF77822CE6067500E7D43B /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 14BF77812CE6067500E7D43B /* CachedAsyncImage */; };
+		14BF77842CE6067F00E7D43B /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 14BF77832CE6067F00E7D43B /* CachedAsyncImage */; };
+		14BF77862CE6068F00E7D43B /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 14BF77852CE6068F00E7D43B /* CachedAsyncImage */; };
+		14BF77882CE6069600E7D43B /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 14BF77872CE6069600E7D43B /* CachedAsyncImage */; };
 		14C807372CCD508B00CF2BAF /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3612CCBAD6E0080D2D5 /* WidgetKit.framework */; };
 		14C807382CCD508B00CF2BAF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3632CCBAD6F0080D2D5 /* SwiftUI.framework */; };
 		14C807432CCD508D00CF2BAF /* StaredStatusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 14C807362CCD508B00CF2BAF /* StaredStatusExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -502,6 +507,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14BF77842CE6067F00E7D43B /* CachedAsyncImage in Frameworks */,
 				1412086D2CD614DA00F81747 /* SwiftUI.framework in Frameworks */,
 				1412086C2CD614DA00F81747 /* WidgetKit.framework in Frameworks */,
 			);
@@ -520,6 +526,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14BF77822CE6067500E7D43B /* CachedAsyncImage in Frameworks */,
 				142606022CD3EE1C00945D16 /* SwiftUI.framework in Frameworks */,
 				142606012CD3EE1C00945D16 /* WidgetKit.framework in Frameworks */,
 			);
@@ -529,6 +536,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14BF77862CE6068F00E7D43B /* CachedAsyncImage in Frameworks */,
 				14C807382CCD508B00CF2BAF /* SwiftUI.framework in Frameworks */,
 				14C807372CCD508B00CF2BAF /* WidgetKit.framework in Frameworks */,
 			);
@@ -538,6 +546,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14BF77802CE602F100E7D43B /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +554,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14BF77882CE6069600E7D43B /* CachedAsyncImage in Frameworks */,
 				14D5C3642CCBAD6F0080D2D5 /* SwiftUI.framework in Frameworks */,
 				14D5C3622CCBAD6F0080D2D5 /* WidgetKit.framework in Frameworks */,
 			);
@@ -640,6 +650,7 @@
 			);
 			name = StaredDriverStatusExtension;
 			packageProductDependencies = (
+				14BF77832CE6067F00E7D43B /* CachedAsyncImage */,
 			);
 			productName = StaredDriverStatusExtension;
 			productReference = 1412086B2CD614DA00F81747 /* StaredDriverStatusExtension.appex */;
@@ -684,6 +695,7 @@
 			);
 			name = DriverStatusExtension;
 			packageProductDependencies = (
+				14BF77812CE6067500E7D43B /* CachedAsyncImage */,
 			);
 			productName = DriverStatusExtension;
 			productReference = 142606002CD3EE1C00945D16 /* DriverStatusExtension.appex */;
@@ -706,6 +718,7 @@
 			);
 			name = StaredStatusExtension;
 			packageProductDependencies = (
+				14BF77852CE6068F00E7D43B /* CachedAsyncImage */,
 			);
 			productName = StaredStatusExtension;
 			productReference = 14C807362CCD508B00CF2BAF /* StaredStatusExtension.appex */;
@@ -737,6 +750,7 @@
 			);
 			name = FormulaOneForFree;
 			packageProductDependencies = (
+				14BF777F2CE602F100E7D43B /* CachedAsyncImage */,
 			);
 			productName = FormulaOneForFree;
 			productReference = 14C82E472CC3A5B100BDC3BD /* FormulaOneForFree.app */;
@@ -760,6 +774,7 @@
 			);
 			name = ChampionshipStatusExtension;
 			packageProductDependencies = (
+				14BF77872CE6069600E7D43B /* CachedAsyncImage */,
 			);
 			productName = ChampionshipStatusExtension;
 			productReference = 14D5C35F2CCBAD6E0080D2D5 /* ChampionshipStatusExtension.appex */;
@@ -807,6 +822,9 @@
 			);
 			mainGroup = 14C82E3E2CC3A5B100BDC3BD;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				14BF777E2CE602F100E7D43B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 14C82E482CC3A5B100BDC3BD /* Products */;
 			projectDirPath = "";
@@ -1604,6 +1622,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		14BF777E2CE602F100E7D43B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		14BF777F2CE602F100E7D43B /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14BF777E2CE602F100E7D43B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+		14BF77812CE6067500E7D43B /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14BF777E2CE602F100E7D43B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+		14BF77832CE6067F00E7D43B /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14BF777E2CE602F100E7D43B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+		14BF77852CE6068F00E7D43B /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14BF777E2CE602F100E7D43B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+		14BF77872CE6069600E7D43B /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14BF777E2CE602F100E7D43B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 14C82E3F2CC3A5B100BDC3BD /* Project object */;
 }

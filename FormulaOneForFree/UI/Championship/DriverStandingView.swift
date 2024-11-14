@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct DriverStandingView: View {
     @Binding var driverStanding: DriverStanding
@@ -52,10 +53,16 @@ struct DriverStandingView: View {
             }
             else if(!forWidget) {
                 if(driver?.headshot_url != nil){
-                    AsyncImage(url: URL(string: driver!.headshot_url!)) { image in
-                        image.resizable()
-                    } placeholder: {
-                        ProgressView()
+                    CachedAsyncImage(url: URL(string: driver!.headshot_url!)) { phase in
+                        if let image = phase.image {
+                            image.resizable()
+                        } else if phase.error != nil {
+                            Image(systemName: "photo")
+                                .font(.title)
+                                .foregroundStyle(.secondary)
+                        } else {
+                            ProgressView()
+                        }
                     }
                     .aspectRatio(contentMode: .fit)
                     .frame(width: forWidget ? 25 : 50, height: forWidget ? 25 : 50)

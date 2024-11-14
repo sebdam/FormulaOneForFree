@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct RaceDetailView: View {
     @Binding var race: Race
@@ -30,14 +31,17 @@ struct RaceDetailView: View {
                     .font(.title2)
                     .frame(maxWidth:.infinity)
                 
-                AsyncImage(url: URL(string: FormulaOneRepository.GetCircuitImageUrl($race.wrappedValue.Circuit))) { phase in
-                    switch phase {
-                        case .empty: ProgressView()
-                        case .success(let image): image.resizable()
-                        case .failure(_): EmptyView()
-                        @unknown default: EmptyView()
+                CachedAsyncImage(url: URL(string: FormulaOneRepository.GetCircuitImageUrl($race.wrappedValue.Circuit))) { phase in
+                        if let image = phase.image {
+                            image.resizable()
+                        } else if phase.error != nil {
+                            Image(systemName: "photo")
+                                .font(.title)
+                                .foregroundStyle(.secondary)
+                        } else {
+                            ProgressView()
+                        }
                     }
-                }
                 .aspectRatio(contentMode: .fit)
                 
                 let qualifSession = meeting?.sessions?.first(where: {$0.session_name == "Qualifying"})

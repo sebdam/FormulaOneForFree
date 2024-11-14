@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct SessionResultItemView: View {
     @State var positions = 1
@@ -31,10 +32,16 @@ struct SessionResultItemView: View {
         HStack {
             
             if(driverUrl != nil) {
-                AsyncImage(url: URL(string: driverUrl!)) { image in
-                    image.resizable()
-                } placeholder: {
-                    ProgressView()
+                CachedAsyncImage(url: URL(string: driverUrl!)) { phase in
+                    if let image = phase.image {
+                        image.resizable()
+                    } else if phase.error != nil {
+                        Image(systemName: "photo")
+                            .font(.title)
+                            .foregroundStyle(.secondary)
+                    } else {
+                        ProgressView()
+                    }
                 }
                 .frame(width: 50, height: 50)
                 .clipShape(.rect(cornerRadius: 12))
@@ -51,10 +58,16 @@ struct SessionResultItemView: View {
             VStack {
                 Text("\(driverName)")
                 if(team != nil){
-                    AsyncImage(url: URL(string: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2024/\(team!.replacingOccurrences(of: " ", with: "-")).png")) { image in
-                        image.resizable()
-                    } placeholder: {
-                        ProgressView()
+                    CachedAsyncImage(url: URL(string: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2024/\(team!.replacingOccurrences(of: " ", with: "-")).png")) { phase in
+                        if let image = phase.image {
+                            image.resizable()
+                        } else if phase.error != nil {
+                            Image(systemName: "photo")
+                                .font(.title)
+                                .foregroundStyle(.secondary)
+                        } else {
+                            ProgressView()
+                        }
                     }
                     .frame(width: 87, height: 25)
                     .clipShape(.rect(cornerRadius: 12))
