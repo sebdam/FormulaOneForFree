@@ -8,10 +8,10 @@ import SwiftUI
 
 struct HomeView: View {
     @State var loadingData = false
-    @State var seasons: [Season] = []
-    @State var drivers: [Driver] = []
-    @State var jolpyDrivers: [JolpyDriver] = []
-    @State var constructors: [Constructor] = []
+    @Binding var seasons: [Season]
+    @Binding var drivers: [Driver]
+    @Binding var jolpyDrivers: [JolpyDriver]
+    @Binding var constructors: [Constructor]
     @State var preferences: Preferences = .init(driverId: "0", constructorId: "0")
     
     var body: some View {
@@ -26,7 +26,7 @@ struct HomeView: View {
         else {
             TabView {
                 Tab("Races", systemImage: "car.2") {
-                    RaceHView(seasons: seasons, drivers: drivers)
+                    RaceHView(seasons: $seasons, drivers: $drivers)
                 }
                 Tab("Championship", systemImage: "flag.pattern.checkered.2.crossed") {
                     ChampionshipView(seasons: seasons, drivers: drivers)
@@ -37,41 +37,25 @@ struct HomeView: View {
                                     selectedDriver: $jolpyDrivers.wrappedValue.first(where: {$0.driverId == preferences.driverId}),
                                     selectedConstructor: $constructors.wrappedValue.first(where: {$0.constructorId == preferences.constructorId}))
                 }
-            }.onAppear() {
-                Task { @MainActor in
-                    await LoadData()
-                }
+            }
+            .onChange(of: drivers, initial: true) {
+                LoadDataIfPossible()
+            }
+            .onChange(of: constructors, initial: true) {
+                LoadDataIfPossible()
             }
         }
     }
     
-    private func LoadData() async {
-        loadingData = true
-        let jolpyRepo = JolpyF1Repository()
-        
-        if($seasons.wrappedValue.count<=0){
-            let result = await jolpyRepo.GetSeasons()
-            if(result?.MRData.SeasonTable != nil){
-                self.$seasons.wrappedValue = result?.MRData.SeasonTable?.Seasons ?? []
+    private func LoadDataIfPossible() {
+        if($jolpyDrivers.wrappedValue.count > 0 && $constructors.wrappedValue.count > 0){
+            Task { @MainActor in
+                await LoadData()
             }
         }
-        
-        if(self.$drivers.wrappedValue.count<=0) {
-            let openF1Repo = OpenF1Repository()
-            let drivers = await openF1Repo.GetDrivers()
-            self.$drivers.wrappedValue = drivers ?? []
-        }
-        
-        let lastSeason = self.$seasons.wrappedValue.max(by: {$0.seasonAsInt<$1.seasonAsInt})
-        if(self.$jolpyDrivers.wrappedValue.count<=0 && lastSeason?.seasonAsInt != nil) {
-            let drivers = await jolpyRepo.GetDrivers(forYear: lastSeason!.seasonAsInt)
-            self.$jolpyDrivers.wrappedValue = drivers?.MRData.DriverTable?.Drivers ?? []
-        }
-        
-        if(self.$constructors.wrappedValue.count<=0 && lastSeason?.seasonAsInt != nil) {
-            let constructors = await jolpyRepo.GetConstructors(forYear: lastSeason!.seasonAsInt)
-            self.$constructors.wrappedValue = constructors?.MRData.ConstructorTable?.Constructors ?? []
-        }
+    }
+    private func LoadData() async {
+        loadingData = true
         
         let prefRepo = PreferencesRepository()
         var preferences = prefRepo.readPreferences()
@@ -109,9 +93,9 @@ struct HomeView: View {
     ]
     
     
-    HomeView(seasons: [Season(season: "2024", url: "")],
-             drivers: drivers,
-             jolpyDrivers: jolpyDrivers,
-             constructors: constructors,
+    HomeView(seasons: .constant([Season(season: "2024", url: "")]),
+             drivers: .constant(drivers),
+             jolpyDrivers: .constant(jolpyDrivers),
+             constructors: .constant(constructors),
              preferences: .init(driverId: "42", constructorId: "42"))
 }

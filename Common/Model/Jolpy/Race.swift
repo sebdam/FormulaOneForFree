@@ -17,7 +17,7 @@ public struct Race: Codable, Identifiable, Equatable {
     public var id: UUID { _id }
     
     public static func == (lhs: Race, rhs: Race) -> Bool {
-        lhs.raceName == rhs.raceName && lhs.season == rhs.season
+        lhs.id == rhs.id
     }
     
     let season: String
@@ -42,4 +42,5 @@ public struct Race: Codable, Identifiable, Equatable {
     let Qualifying: Schedule?
     
     var Results: [Result]? = []
+    
 }

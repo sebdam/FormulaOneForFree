@@ -24,12 +24,16 @@ struct RaceDetailView: View {
         }
         else {
             VStack {
-                Text($race.wrappedValue.season)
-                    .frame(maxWidth:.infinity)
-                    .clipShape(.rect(cornerRadius: 12))
-                Text($race.wrappedValue.raceName)
-                    .font(.title2)
-                    .frame(maxWidth:.infinity)
+                HStack {
+                    Text($race.wrappedValue.season)
+                    
+                    Text($race.wrappedValue.raceName)
+                        .font(.title2)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                        .frame(maxWidth:.infinity)
+                }.clipShape(.rect(cornerRadius: 12))
+                
                 
                 CachedAsyncImage(url: URL(string: FormulaOneRepository.GetCircuitImageUrl($race.wrappedValue.Circuit))) { phase in
                         if let image = phase.image {
@@ -208,7 +212,7 @@ struct RaceDetailView: View {
 
 #Preview {
     RaceDetailView(race: .constant(
-        Race(season: "2024", round: "1", url: "", raceName: "Champion 1",
+        Race( season: "2024", round: "1", url: "", raceName: "Champion 1",
             Circuit: Circuit(circuitId: "42", url: "", circuitName: "Hockenheimring", Location: Location(lat: "", long: "", locality: "", country: "")),
             date: "2024-01-01T00:00:00.000+00:00", time: nil,
             FirstPractice: Schedule(date: "", time: nil),

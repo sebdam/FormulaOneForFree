@@ -17,23 +17,7 @@ public class FormulaOneRepository {
         return "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/\(name)_circuit\(ville)"
     }
     
-    public static func GetCircuitImage(_ circuit: String) async -> UIImage? {
-        
-        let url = "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/\(circuit)%20carbon"
-        
-        do {
-            let response = try await URLSession.shared.data(from: URL(string: url)!)
-            let image = UIImage(data: response.0)
-            return image
-        }
-        catch {
-            print("Unexpected error while fetching from OpenF1Repository: \(error).")
-        }
-        
-        return nil
-    }
-    
-    public static func ComputeName(circuitName: String) -> String {
+    private static func ComputeName(circuitName: String) -> String {
         var name = circuitName.replacingOccurrences(of: " ", with: "_")
         if(name == "Hockenheimring"){
             name = "Germany"
@@ -132,8 +116,8 @@ public class FormulaOneRepository {
         return name
     }
     
-    public static func ComputeCity(circuitName: String) -> String {
-        var name = circuitName.replacingOccurrences(of: " ", with: "_")
+    private static func ComputeCity(circuitName: String) -> String {
+        let name = circuitName.replacingOccurrences(of: " ", with: "_")
         var ville = ""
         if(name == "Hockenheimring"){
             ville = "_Hockenheim"

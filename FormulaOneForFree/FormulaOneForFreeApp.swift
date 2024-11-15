@@ -9,9 +9,18 @@ import SwiftUI
 
 @main
 struct FormulaOneForFreeApp: App {
+    @StateObject private var store = DataStore()
+    
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            HomeView(seasons: $store.Seasons, drivers: $store.Drivers, jolpyDrivers: $store.JolpyDrivers, constructors: $store.Constructors)
+                .task { @MainActor in
+                    do {
+                        try await store.load()
+                    } catch {
+                        fatalError(error.localizedDescription)
+                    }
+                }
         }
     }
 }

@@ -58,7 +58,7 @@ struct SessionResultsView: View {
                 }
             } else {
                 NavigationStack {
-                    if(orientation.isLandscape){
+                    if(!orientation.isPortrait){
                         HStack{
                             LiveView(session:$session, drivers: drivers, locations: [])
                                     .padding([.top])

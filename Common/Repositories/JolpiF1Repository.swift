@@ -68,6 +68,7 @@ public class JolpyF1Repository {
     
     public func GetResults(forYear:Int, forRound:String) async -> JolpiRacesData? {
         let url = baseUrl + "/\(forYear)/\(forRound)/results/?format=json&limit=100"
+        print("\(url)")
         let response:JolpiRacesData? = await fetch(url: url)
         return response
     }

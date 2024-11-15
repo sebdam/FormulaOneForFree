@@ -6,7 +6,14 @@
 //
 import Foundation
 
-public struct Driver: Codable {
+public struct Driver: Identifiable, Equatable, Codable {
+    private let _id = UUID()
+    public var id: UUID { _id }
+    
+    public static func == (lhs: Driver, rhs: Driver) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     let broadcast_name:String
     let country_code: String?
     let driver_number: Int
