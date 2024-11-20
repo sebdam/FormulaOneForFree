@@ -15,6 +15,12 @@ struct RaceDetailView: View {
     
     @State var loading = false
     
+    @State var trackImageId = UUID()
+    
+    
+    @State private var prevOrientation: UIDeviceOrientation = UIDevice.current.orientation
+    @State private var orientation: UIDeviceOrientation = UIDevice.current.orientation
+    
     var body: some View {
         if(loading){
             VStack {
@@ -24,190 +30,402 @@ struct RaceDetailView: View {
         }
         else {
             VStack {
-                HStack {
-                    Text($race.wrappedValue.season)
-                    
-                    Text($race.wrappedValue.raceName)
-                        .font(.title2)
-                        .lineLimit(1)
-                        .truncationMode(.tail)
-                        .frame(maxWidth:.infinity)
-                }.clipShape(.rect(cornerRadius: 12))
-                
-                
-                CachedAsyncImage(url: URL(string: FormulaOneRepository.GetCircuitImageUrl($race.wrappedValue.Circuit))) { phase in
-                        if let image = phase.image {
-                            image.resizable()
-                        } else if phase.error != nil {
-                            Image(systemName: "photo")
-                                .font(.title)
-                                .foregroundStyle(.secondary)
-                        } else {
-                            ProgressView()
+                if(orientation.isPortrait || (orientation.isFlat && prevOrientation.isPortrait))
+                {
+                    VStack {
+                        HStack {
+                            Text($race.wrappedValue.season)
+                            
+                            Text($race.wrappedValue.raceName)
+                                .font(.title2)
+                                .lineLimit(1)
+                                .truncationMode(.tail)
+                                .frame(maxWidth:.infinity)
+                        }.clipShape(.rect(cornerRadius: 12))
+                        
+                        
+                        CachedAsyncImage(url: URL(string: FormulaOneRepository.GetCircuitImageUrl($race.wrappedValue.Circuit))) { phase in
+                            if let image = phase.image {
+                                image.resizable()
+                            } else if phase.error != nil {
+                                ContentUnavailableView(label: {
+                                    Image(systemName: "photo")
+                                        .font(.title)
+                                        .foregroundStyle(.secondary)
+                                }, actions: {
+                                    Button(action: { trackImageId = UUID() }, label: {Label("retry", systemImage: "arrow.counterclockwise")})
+                                })
+                            } else {
+                                ProgressView()
+                            }
                         }
-                    }
-                .aspectRatio(contentMode: .fit)
-                
-                let qualifSession = meeting?.sessions?.first(where: {$0.session_name == "Qualifying"})
-                List {
-                    if($race.wrappedValue.FirstPractice != nil){
-                        let session = meeting?.sessions?.first(where: {$0.session_name == "Practice 1"})
-                        if(session != nil){
-                            NavigationLink() {
-                                SessionResultsView(session: session!, drivers: drivers, results: [])
-                            } label: {
-                                ScheduleView(dueDate: .constant($race.wrappedValue.FirstPractice?.datetime), scheduleName: "Practice 1", haveSession: true)
+                        .id(trackImageId)
+                        .aspectRatio(contentMode: .fit)
+                        
+                        let qualifSession = meeting?.sessions?.first(where: {$0.session_name == "Qualifying"})
+                        List {
+                            if($race.wrappedValue.FirstPractice != nil){
+                                let session = meeting?.sessions?.first(where: {$0.session_name == "Practice 1"})
+                                if(session != nil){
+                                    NavigationLink() {
+                                        SessionResultsView(session: session!, drivers: drivers, results: [])
+                                    } label: {
+                                        ScheduleView(dueDate: .constant($race.wrappedValue.FirstPractice?.datetime), scheduleName: "Practice 1", haveSession: true)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                } else {
+                                    ScheduleView(dueDate: .constant($race.wrappedValue.FirstPractice?.datetime), scheduleName: "Practice 1")
+                                        .frame(maxWidth: .infinity)
+                                }
+                            }
+                            if($race.wrappedValue.SecondPractice != nil){
+                                let session = meeting?.sessions?.first(where: {$0.session_name == "Practice 2"})
+                                if(session != nil){
+                                    NavigationLink() {
+                                        SessionResultsView(session: session!, drivers: drivers, results: [])
+                                    } label: {
+                                        ScheduleView(dueDate: .constant($race.wrappedValue.SecondPractice?.datetime), scheduleName: "Practice 2", haveSession: true)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
+                                else {
+                                    ScheduleView(dueDate: .constant($race.wrappedValue.SecondPractice?.datetime), scheduleName: "Practice 2")
+                                        .frame(maxWidth: .infinity)
+                                }
+                            }
+                            if($race.wrappedValue.ThirdPractice != nil){
+                                let session = meeting?.sessions?.first(where: {$0.session_name == "Practice 3"})
+                                if(session != nil){
+                                    NavigationLink() {
+                                        SessionResultsView(session: session!, drivers: drivers, results: [])
+                                    } label: {
+                                        ScheduleView(dueDate: .constant($race.wrappedValue.ThirdPractice?.datetime), scheduleName: "Practice 3", haveSession: true)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
+                                else {
+                                    ScheduleView(dueDate: .constant($race.wrappedValue.ThirdPractice?.datetime), scheduleName: "Practice 3")
+                                        .frame(maxWidth: .infinity)
+                                }
+                            }
+                            if($race.wrappedValue.SprintQualifying != nil){
+                                let session = meeting?.sessions?.first(where: {$0.session_name == "Sprint Qualifying"})
+                                if(session != nil){
+                                    NavigationLink() {
+                                        GridView(session: session!, drivers: drivers)
+                                    } label: {
+                                        ScheduleView(dueDate: .constant($race.wrappedValue.SprintQualifying?.datetime), scheduleName: "Sprint Qualifying", haveSession: true)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
+                                else {
+                                    ScheduleView(dueDate: .constant($race.wrappedValue.SprintQualifying?.datetime), scheduleName: "Sprint Qualifying")
+                                        .frame(maxWidth: .infinity)
+                                }
+                            }
+                            if($race.wrappedValue.Sprint != nil){
+                                let session = meeting?.sessions?.first(where: {$0.session_name == "Sprint"})
+                                if(session != nil){
+                                    NavigationLink() {
+                                        SessionResultsView(session: session!, drivers: drivers, results: race.Results ?? [])
+                                    } label: {
+                                        ScheduleView(dueDate: .constant($race.wrappedValue.Sprint?.datetime), scheduleName: "Sprint", haveSession: true)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
+                                else {
+                                    ScheduleView(dueDate: .constant($race.wrappedValue.Sprint?.datetime), scheduleName: "Sprint")
+                                        .frame(maxWidth: .infinity)
+                                }
+                            }
+                            
+                            if($race.wrappedValue.Qualifying != nil){
+                                if(qualifSession != nil){
+                                    NavigationLink() {
+                                        GridView(session: qualifSession!, drivers: drivers)
+                                    } label: {
+                                        ScheduleView(dueDate: .constant($race.wrappedValue.Qualifying?.datetime), scheduleName: "Qualifying", haveSession: true)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
+                                else {
+                                    ScheduleView(dueDate: .constant($race.wrappedValue.Qualifying?.datetime), scheduleName: "Qualifying")
+                                        .frame(maxWidth: .infinity)
+                                }
+                            }
+                            
+                            let session = meeting?.sessions?.first(where: {$0.session_name == "Race"})
+                            if(session != nil){
+                                NavigationLink() {
+                                    SessionResultsView(session: session!, drivers: drivers, results: race.Results ?? [])
+                                } label: {
+                                    ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue.datetime), scheduleName: "Race", haveSession: true)
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                            }
+                            else {
+                                ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue.datetime), scheduleName: "Race")
                                     .frame(maxWidth: .infinity)
                             }
-                            .buttonStyle(PlainButtonStyle())
-                        } else {
-                            ScheduleView(dueDate: .constant($race.wrappedValue.FirstPractice?.datetime), scheduleName: "Practice 1")
-                                .frame(maxWidth: .infinity)
                         }
-                    }
-                    if($race.wrappedValue.SecondPractice != nil){
-                        let session = meeting?.sessions?.first(where: {$0.session_name == "Practice 2"})
-                        if(session != nil){
-                            NavigationLink() {
-                                SessionResultsView(session: session!, drivers: drivers, results: [])
-                            } label: {
-                                ScheduleView(dueDate: .constant($race.wrappedValue.SecondPractice?.datetime), scheduleName: "Practice 2", haveSession: true)
-                                    .frame(maxWidth: .infinity)
+                        .listStyle(.plain)
+                        
+                        
+                        if($race.wrappedValue.Results?.count ?? 0 == 0 && qualifSession != nil){
+                            GridView(session: qualifSession!, drivers: drivers)
+                        }
+                        
+                        
+                        if($race.wrappedValue.Results?.count ?? 0 >= 3) {
+                            HStack {
+                                let resultSecond = $race.wrappedValue.Results?.first(where: {$0.position == "2"})
+                                let driverSecond = $drivers.wrappedValue.first(where: {$0.name_acronym == resultSecond?.Driver.code})
+                                DriverView(driver: driverSecond!,
+                                           position: "2",
+                                           height: 20)
+                                .frame(maxWidth:.infinity)
+                                
+                                let resultFirst = $race.wrappedValue.Results?.first(where: {$0.position == "1"})
+                                let driverFirst = $drivers.wrappedValue.first(where: {$0.name_acronym == resultFirst?.Driver.code})
+                                DriverView(driver: driverFirst!,
+                                           position: "1",
+                                           height: 40)
+                                .frame(maxWidth:.infinity)
+                                
+                                let resultThird = $race.wrappedValue.Results?.first(where: {$0.position == "3"})
+                                let driverThird = $drivers.wrappedValue.first(where: {$0.name_acronym == resultThird?.Driver.code})
+                                DriverView(driver: driverThird!,
+                                           position: "3",
+                                           height: nil)
+                                .frame(maxWidth:.infinity)
+                                
                             }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                        else {
-                            ScheduleView(dueDate: .constant($race.wrappedValue.SecondPractice?.datetime), scheduleName: "Practice 2")
-                                .frame(maxWidth: .infinity)
                         }
                     }
-                    if($race.wrappedValue.ThirdPractice != nil){
-                        let session = meeting?.sessions?.first(where: {$0.session_name == "Practice 3"})
-                        if(session != nil){
-                            NavigationLink() {
-                                SessionResultsView(session: session!, drivers: drivers, results: [])
-                            } label: {
-                                ScheduleView(dueDate: .constant($race.wrappedValue.ThirdPractice?.datetime), scheduleName: "Practice 3", haveSession: true)
-                                    .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                        else {
-                            ScheduleView(dueDate: .constant($race.wrappedValue.ThirdPractice?.datetime), scheduleName: "Practice 3")
-                                .frame(maxWidth: .infinity)
-                        }
-                    }
-                    if($race.wrappedValue.SprintQualifying != nil){
-                        let session = meeting?.sessions?.first(where: {$0.session_name == "Sprint Qualifying"})
-                        if(session != nil){
-                            NavigationLink() {
-                                GridView(session: session!, drivers: drivers)
-                            } label: {
-                                ScheduleView(dueDate: .constant($race.wrappedValue.SprintQualifying?.datetime), scheduleName: "Sprint Qualifying", haveSession: true)
-                                    .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                        else {
-                            ScheduleView(dueDate: .constant($race.wrappedValue.SprintQualifying?.datetime), scheduleName: "Sprint Qualifying")
-                                .frame(maxWidth: .infinity)
-                        }
-                    }
-                    if($race.wrappedValue.Sprint != nil){
-                        let session = meeting?.sessions?.first(where: {$0.session_name == "Sprint"})
-                        if(session != nil){
-                            NavigationLink() {
-                                SessionResultsView(session: session!, drivers: drivers, results: race.Results ?? [])
-                            } label: {
-                                ScheduleView(dueDate: .constant($race.wrappedValue.Sprint?.datetime), scheduleName: "Sprint", haveSession: true)
-                                    .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                        else {
-                            ScheduleView(dueDate: .constant($race.wrappedValue.Sprint?.datetime), scheduleName: "Sprint")
-                                .frame(maxWidth: .infinity)
-                        }
-                    }
-                    
-                    if($race.wrappedValue.Qualifying != nil){
-                        if(qualifSession != nil){
-                            NavigationLink() {
-                                GridView(session: qualifSession!, drivers: drivers)
-                            } label: {
-                                ScheduleView(dueDate: .constant($race.wrappedValue.Qualifying?.datetime), scheduleName: "Qualifying", haveSession: true)
-                                    .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                        else {
-                            ScheduleView(dueDate: .constant($race.wrappedValue.Qualifying?.datetime), scheduleName: "Qualifying")
-                                .frame(maxWidth: .infinity)
-                        }
-                    }
-                    
-                    let session = meeting?.sessions?.first(where: {$0.session_name == "Race"})
-                    if(session != nil){
-                        NavigationLink() {
-                            SessionResultsView(session: session!, drivers: drivers, results: race.Results ?? [])
-                        } label: {
-                            ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue.datetime), scheduleName: "Race", haveSession: true)
-                                .frame(maxWidth: .infinity)
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                    }
-                    else {
-                        ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue.datetime), scheduleName: "Race")
-                            .frame(maxWidth: .infinity)
-                    }
+                    .padding()
+                    .cornerRadius(12)
+                    .overlay( /// apply a rounded border
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(.blue, lineWidth: 2)
+                    )
                 }
-                .listStyle(.plain)
-                
-                
-                if($race.wrappedValue.Results?.count ?? 0 == 0 && qualifSession != nil){
-                    GridView(session: qualifSession!, drivers: drivers)
-                }
-
-                
-                if($race.wrappedValue.Results?.count ?? 0 >= 3) {
+                else {
                     HStack {
-                        let resultSecond = $race.wrappedValue.Results?.first(where: {$0.position == "2"})
-                        let driverSecond = $drivers.wrappedValue.first(where: {$0.name_acronym == resultSecond?.Driver.code})
-                        DriverView(driver: driverSecond!,
-                                   position: "2",
-                                   height: 20)
-                        .frame(maxWidth:.infinity)
+                        let qualifSession = meeting?.sessions?.first(where: {$0.session_name == "Qualifying"})
                         
-                        let resultFirst = $race.wrappedValue.Results?.first(where: {$0.position == "1"})
-                        let driverFirst = $drivers.wrappedValue.first(where: {$0.name_acronym == resultFirst?.Driver.code})
-                        DriverView(driver: driverFirst!,
-                                   position: "1",
-                                   height: 40)
-                        .frame(maxWidth:.infinity)
+                        VStack {
+                            HStack {
+                                Text($race.wrappedValue.season)
+                                
+                                Text($race.wrappedValue.raceName)
+                                    .font(.title2)
+                                    .lineLimit(1)
+                                    .truncationMode(.tail)
+                                    .frame(maxWidth:.infinity)
+                            }
+                            
+                            CachedAsyncImage(url: URL(string: FormulaOneRepository.GetCircuitImageUrl($race.wrappedValue.Circuit))) { phase in
+                                if let image = phase.image {
+                                    image.resizable()
+                                } else if phase.error != nil {
+                                    ContentUnavailableView(label: {
+                                        Image(systemName: "photo")
+                                            .font(.title)
+                                            .foregroundStyle(.secondary)
+                                    }, actions: {
+                                        Button(action: { trackImageId = UUID() }, label: {Label("retry", systemImage: "arrow.counterclockwise")})
+                                    })
+                                } else {
+                                    ProgressView()
+                                }
+                            }
+                            .id(trackImageId)
+                            .aspectRatio(contentMode: .fit)
+                            
+                            if($race.wrappedValue.Results?.count ?? 0 == 0 && qualifSession != nil){
+                                GridView(session: qualifSession!, drivers: drivers)
+                                    .frame(maxHeight: .infinity)
+                            }
+                            else if($race.wrappedValue.Results?.count ?? 0 >= 3) {
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack {
+                                        let resultFirst = $race.wrappedValue.Results?.first(where: {$0.position == "1"})
+                                        let driverFirst = $drivers.wrappedValue.first(where: {$0.name_acronym == resultFirst?.Driver.code})!
+                                        
+                                        DriverView(driver: driverFirst, position: "1", height: nil, alignBottom: false, showTeam: false)
+                                        
+                                        Divider()
+                                        
+                                        let resultSecond = $race.wrappedValue.Results?.first(where: {$0.position == "2"})
+                                        let driverSecond = $drivers.wrappedValue.first(where: {$0.name_acronym == resultSecond?.Driver.code})!
+                                        DriverView(driver: driverSecond, position: "2", height: nil, alignBottom: false, showTeam: false)
+                                        
+                                        Divider()
+                                        
+                                        let resultThird = $race.wrappedValue.Results?.first(where: {$0.position == "3"})
+                                        let driverThird = $drivers.wrappedValue.first(where: {$0.name_acronym == resultThird?.Driver.code})!
+                                        DriverView(driver: driverThird, position: "3", height: nil, alignBottom: false, showTeam: false)
+                                        
+                                        Divider()
+                                        
+                                        DriverView(driver: driverFirst, position: "1", height: nil, alignBottom: false, showDriver: false, showTeam: true)
+                                        
+                                        Divider()
+                                        
+                                        DriverView(driver: driverSecond, position: "2", height: nil, alignBottom: false, showDriver: false, showTeam: true)
+                                        
+                                        Divider()
+                                        
+                                        DriverView(driver: driverThird, position: "3", height: nil, alignBottom: false, showDriver: false, showTeam: true)
+
+                                    }
+                                    .scrollTargetLayout()
+                                }
+                                .scrollTargetBehavior(.viewAligned)
+                                
+                            }
+                            
+                        }
+                        .clipShape(.rect(cornerRadius: 12))
                         
-                        let resultThird = $race.wrappedValue.Results?.first(where: {$0.position == "3"})
-                        let driverThird = $drivers.wrappedValue.first(where: {$0.name_acronym == resultThird?.Driver.code})
-                        DriverView(driver: driverThird!,
-                                   position: "3",
-                                   height: nil)
-                        .frame(maxWidth:.infinity)
-                        
+                        List {
+                            if($race.wrappedValue.FirstPractice != nil){
+                                let session = meeting?.sessions?.first(where: {$0.session_name == "Practice 1"})
+                                if(session != nil){
+                                    NavigationLink() {
+                                        SessionResultsView(session: session!, drivers: drivers, results: [])
+                                    } label: {
+                                        ScheduleView(dueDate: .constant($race.wrappedValue.FirstPractice?.datetime), scheduleName: "Practice 1", haveSession: true)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                } else {
+                                    ScheduleView(dueDate: .constant($race.wrappedValue.FirstPractice?.datetime), scheduleName: "Practice 1")
+                                        .frame(maxWidth: .infinity)
+                                }
+                            }
+                            if($race.wrappedValue.SecondPractice != nil){
+                                let session = meeting?.sessions?.first(where: {$0.session_name == "Practice 2"})
+                                if(session != nil){
+                                    NavigationLink() {
+                                        SessionResultsView(session: session!, drivers: drivers, results: [])
+                                    } label: {
+                                        ScheduleView(dueDate: .constant($race.wrappedValue.SecondPractice?.datetime), scheduleName: "Practice 2", haveSession: true)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
+                                else {
+                                    ScheduleView(dueDate: .constant($race.wrappedValue.SecondPractice?.datetime), scheduleName: "Practice 2")
+                                        .frame(maxWidth: .infinity)
+                                }
+                            }
+                            if($race.wrappedValue.ThirdPractice != nil){
+                                let session = meeting?.sessions?.first(where: {$0.session_name == "Practice 3"})
+                                if(session != nil){
+                                    NavigationLink() {
+                                        SessionResultsView(session: session!, drivers: drivers, results: [])
+                                    } label: {
+                                        ScheduleView(dueDate: .constant($race.wrappedValue.ThirdPractice?.datetime), scheduleName: "Practice 3", haveSession: true)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
+                                else {
+                                    ScheduleView(dueDate: .constant($race.wrappedValue.ThirdPractice?.datetime), scheduleName: "Practice 3")
+                                        .frame(maxWidth: .infinity)
+                                }
+                            }
+                            if($race.wrappedValue.SprintQualifying != nil){
+                                let session = meeting?.sessions?.first(where: {$0.session_name == "Sprint Qualifying"})
+                                if(session != nil){
+                                    NavigationLink() {
+                                        GridView(session: session!, drivers: drivers)
+                                    } label: {
+                                        ScheduleView(dueDate: .constant($race.wrappedValue.SprintQualifying?.datetime), scheduleName: "Sprint Qualifying", haveSession: true)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
+                                else {
+                                    ScheduleView(dueDate: .constant($race.wrappedValue.SprintQualifying?.datetime), scheduleName: "Sprint Qualifying")
+                                        .frame(maxWidth: .infinity)
+                                }
+                            }
+                            if($race.wrappedValue.Sprint != nil){
+                                let session = meeting?.sessions?.first(where: {$0.session_name == "Sprint"})
+                                if(session != nil){
+                                    NavigationLink() {
+                                        SessionResultsView(session: session!, drivers: drivers, results: race.Results ?? [])
+                                    } label: {
+                                        ScheduleView(dueDate: .constant($race.wrappedValue.Sprint?.datetime), scheduleName: "Sprint", haveSession: true)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
+                                else {
+                                    ScheduleView(dueDate: .constant($race.wrappedValue.Sprint?.datetime), scheduleName: "Sprint")
+                                        .frame(maxWidth: .infinity)
+                                }
+                            }
+                            
+                            if($race.wrappedValue.Qualifying != nil){
+                                if(qualifSession != nil){
+                                    NavigationLink() {
+                                        GridView(session: qualifSession!, drivers: drivers)
+                                    } label: {
+                                        ScheduleView(dueDate: .constant($race.wrappedValue.Qualifying?.datetime), scheduleName: "Qualifying", haveSession: true)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
+                                else {
+                                    ScheduleView(dueDate: .constant($race.wrappedValue.Qualifying?.datetime), scheduleName: "Qualifying")
+                                        .frame(maxWidth: .infinity)
+                                }
+                            }
+                            
+                            let session = meeting?.sessions?.first(where: {$0.session_name == "Race"})
+                            if(session != nil){
+                                NavigationLink() {
+                                    SessionResultsView(session: session!, drivers: drivers, results: race.Results ?? [])
+                                } label: {
+                                    ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue.datetime), scheduleName: "Race", haveSession: true)
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                            }
+                            else {
+                                ScheduleView(dueDate:Binding<Date?>.constant($race.wrappedValue.datetime), scheduleName: "Race")
+                                    .frame(maxWidth: .infinity)
+                            }
+                        }
+                        .listStyle(.plain)
+                        .clipShape(.rect(cornerRadius: 12))
                     }
-                    //Spacer()
-                    
+                    .padding()
+                    .cornerRadius(12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(.blue, lineWidth: 2)
+                    )
                 }
-                //Spacer()
             }
-            .padding()
-            .frame(width: UIScreen.main.bounds.width-70)
-            .cornerRadius(12)
-            .overlay( /// apply a rounded border
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(.blue, lineWidth: 2)
-            )
+            .padding([.trailing, .leading], 35)
+            .padding([.top,.bottom])
+            .onRotate { newOrientation in
+                prevOrientation = orientation
+                orientation = newOrientation
+            }
         }
     }
-    
 }
 
 #Preview {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import WidgetKit
+import assetsFramework
 
 struct ConstructorStandingView: View {
     @Binding var constructorStanding: ConstructorStanding
@@ -44,7 +45,8 @@ struct ConstructorStandingView: View {
                 .frame(maxWidth:.infinity)
             }
             else {
-                let teamImage = UIImage(named: constructorStanding.Constructor.name.replacingOccurrences(of: " ", with: "-"))
+                let teamImage = ImageProvider.image(named: constructorStanding.Constructor.name.replacingOccurrences(of: " ", with: "-"))
+                    //UIImage(named: constructorStanding.Constructor.name.replacingOccurrences(of: " ", with: "-"))
                 
                 if(teamImage != nil){
                     Image(uiImage: teamImage!)

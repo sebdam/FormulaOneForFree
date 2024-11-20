@@ -15,6 +15,7 @@ struct SessionResultsView: View {
     @State var drivers: [Driver]
     @State var results: [Result]
     
+    @State private var prevOrientation: UIDeviceOrientation
     @State private var orientation: UIDeviceOrientation
     
     init(loading: Bool = true, session: Session, drivers: [Driver], results: [Result])
@@ -26,7 +27,8 @@ struct SessionResultsView: View {
         _drivers = State(initialValue: drivers)
         _results = State(initialValue: results)
         
-        _orientation = State(initialValue: UIDevice.current.orientation.isLandscape ? UIDeviceOrientation.landscapeLeft : UIDeviceOrientation.portrait)
+        _prevOrientation = State(initialValue: UIDevice.current.orientation)
+        _orientation = State(initialValue: UIDevice.current.orientation)
     }
     
     private func GetPositionsList() -> List<Never, ForEach<Binding<[Position]>, Binding<Position>.ID, SessionResultItemView>> {
@@ -58,7 +60,7 @@ struct SessionResultsView: View {
                 }
             } else {
                 NavigationStack {
-                    if(!orientation.isPortrait){
+                    if(orientation.isLandscape || (orientation.isFlat && prevOrientation.isLandscape)){
                         HStack{
                             LiveView(session:$session, drivers: drivers, locations: [])
                                     .padding([.top])
@@ -73,6 +75,7 @@ struct SessionResultsView: View {
                     }
                 }
                 .onRotate { newOrientation in
+                    prevOrientation = orientation
                     orientation = newOrientation
                 }
                 .onReceive(timer) { _ in

@@ -62,7 +62,7 @@ public class FormulaOneRepository {
             name = "Emilia_Romagna"
         }
         else if(name == "Circuit_de_Monaco"){
-            name = "Monoco"
+            name = "Monaco"
         }
         else if(name == "Circuit_Gilles_Villeneuve"){
             name = "Canada"

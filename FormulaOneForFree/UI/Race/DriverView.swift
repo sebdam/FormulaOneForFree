@@ -14,6 +14,8 @@ struct DriverView: View {
     @State var position: String
     @State var height: CGFloat?
     @State var alignBottom: Bool = true
+    @State var showDriver: Bool = true
+    @State var showTeam: Bool = true
     
     
     func numberFormatter() -> NumberFormatter {
@@ -31,37 +33,39 @@ struct DriverView: View {
                 Spacer()
             }
             
-            if(driverUrl != nil) {
-                CachedAsyncImage(url: URL(string: driverUrl!)) { phase in
-                    if let image = phase.image {
-                        image.resizable()
-                    } else if phase.error != nil {
-                        Image(systemName: "photo")
-                            .font(.title)
-                            .foregroundStyle(.secondary)
-                    } else {
-                        ProgressView()
+            if(showDriver){
+                if(driverUrl != nil) {
+                    CachedAsyncImage(url: URL(string: driverUrl!)) { phase in
+                        if let image = phase.image {
+                            image.resizable()
+                        } else if phase.error != nil {
+                            Image(systemName: "photo")
+                                .font(.title)
+                                .foregroundStyle(.secondary)
+                        } else {
+                            ProgressView()
+                        }
                     }
-                }
-                .frame(width: 50, height: 50)
-                .clipShape(.rect(cornerRadius: 12))
-            }
-            else {
-                Image("helmetWithDriver")
-                    .resizable()
                     .frame(width: 50, height: 50)
                     .clipShape(.rect(cornerRadius: 12))
-            }
-            
-            Text(driver.name_acronym)
-            
-            if(bestLapDuration != nil){
-                HStack{
-                    Image(systemName: "stopwatch")
-                    
-                    let number =  numberFormatter().string(from: NSNumber(value: bestLapDuration!))
-                    if(number != nil){
-                        Text("\(number!) s")
+                }
+                else {
+                    Image("helmetWithDriver")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .clipShape(.rect(cornerRadius: 12))
+                }
+                
+                Text(driver.name_acronym)
+                
+                if(bestLapDuration != nil){
+                    HStack{
+                        Image(systemName: "stopwatch")
+                        
+                        let number =  numberFormatter().string(from: NSNumber(value: bestLapDuration!))
+                        if(number != nil){
+                            Text("\(number!) s")
+                        }
                     }
                 }
             }
@@ -70,7 +74,7 @@ struct DriverView: View {
                 Spacer().frame(height: height!)
             }
             
-            if(team != nil){
+            if(team != nil && showTeam){
                 CachedAsyncImage(url: URL(string: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2024/\(team!.replacingOccurrences(of: " ", with: "-")).png")) { phase in
                     if let image = phase.image {
                         image.resizable()

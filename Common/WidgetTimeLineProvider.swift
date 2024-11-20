@@ -13,6 +13,7 @@
 //
 import UIKit
 import WidgetKit
+import assetsFramework
 
 class WidgetTimeLineProvider {
     
@@ -60,7 +61,7 @@ class WidgetTimeLineProvider {
             let driver = await GetDriver(driverCode: firstDriverStanding?.Driver.code)
             let driverImage = await GetDriverImage(driver: driver)
             
-            let constructorImage = await GetConstructorImage(constructor: firstConstructorStanding?.Constructor)
+            let constructorImage = GetConstructorImage(constructor: firstConstructorStanding?.Constructor)
             
             let race = await GetNextRace()
             
@@ -99,7 +100,7 @@ class WidgetTimeLineProvider {
             let firstConstructorStanding = standings.0
             let firstDriverStanding = standings.1
             
-            let constructorImage = await GetConstructorImage(constructor: firstConstructorStanding?.Constructor)
+            let constructorImage = GetConstructorImage(constructor: firstConstructorStanding?.Constructor)
             
             var driverImage: UIImage? = nil
             var driver: Driver? = nil
@@ -188,10 +189,10 @@ class WidgetTimeLineProvider {
         return driverImage
     }
     
-    private func GetConstructorImage(constructor: Constructor?) async -> UIImage? {
+    private func GetConstructorImage(constructor: Constructor?) -> UIImage? {
         var constructorImage: UIImage? = nil
         if(constructor?.name != nil){
-            constructorImage = UIImage(named: constructor!.name.replacingOccurrences(of: " ", with: "-"))?.resized(toWidth: 90, isOpaque: false)
+            constructorImage = ImageProvider.image(named: constructor!.name.replacingOccurrences(of: " ", with: "-"))?.resized(toWidth: 90, isOpaque: false)
         }
         return constructorImage
     }
