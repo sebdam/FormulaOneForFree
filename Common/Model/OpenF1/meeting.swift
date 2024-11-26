@@ -6,7 +6,11 @@
 //
 import Foundation
 
-public struct Meeting: Codable {
+public struct Meeting: Codable, Equatable {
+    public static func == (lhs: Meeting, rhs: Meeting) -> Bool {
+        lhs.meeting_key == rhs.meeting_key
+    }
+    
     let circuit_key : Int
     let circuit_short_name : String
     let country_code : String

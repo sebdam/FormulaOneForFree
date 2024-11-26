@@ -6,9 +6,14 @@
 //
 import Foundation
 
-public struct DriverLocation: Identifiable, Codable {
+public struct DriverLocation: Identifiable, Codable, Equatable {
+    
     private let _id = UUID()
     public var id: UUID { _id }
+    
+    public static func == (lhs: DriverLocation, rhs: DriverLocation) -> Bool {
+        lhs.id == rhs.id
+    }
     
     let date : Date?
     

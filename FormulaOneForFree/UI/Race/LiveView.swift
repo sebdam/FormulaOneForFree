@@ -21,7 +21,9 @@ struct LiveView: View {
     @State private var replayLocations: [DriverLocation] = []
     @State private var lastReplayDate: Date = Date()
     
-    private let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    @State var loadingPoints = false
+    
+    private let timer = Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()
     
     static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -37,10 +39,6 @@ struct LiveView: View {
                 Spacer()
             }.onAppear(){
                 LoadSessionData()
-            }
-            .onChange(of: session, initial: true){ oldValue, newValue in
-                print("Session changed")
-                print("positions: \(session.positions?.count ?? 0)")
             }
         } else if(multiCircuit != nil) {
             VStack {
@@ -74,7 +72,7 @@ struct LiveView: View {
                     var scaleRatio: Double = 1
                     let flipX = true
                     let flipY = false
-                    let margin = 5.0
+                    let margin = 10.0
                     let trackLineWidth = 10.0
                     let pointSize = 18.0
 
@@ -152,7 +150,7 @@ struct LiveView: View {
         }
     }
     
-    private func LoadSessionData() {
+    func LoadSessionData() {
         loading = true
         Task { @MainActor in
             let multiRepo = MultiviewerRepository()
@@ -162,29 +160,24 @@ struct LiveView: View {
         }
     }
     
-    private func LoadPoints() async {
-        let repo = OpenF1Repository()
-        let positions = await repo.GetDriversLocations(meetingKey: session.meeting_key, sessionKey: session.session_key, since: Calendar.current.date(byAdding: .second, value: -1, to: Date())!)
-
-        var finalPositions: [DriverLocation] = []
-        
-        if(positions != nil){
-            let ordered = positions!
-                .filter({$0.x != 0 && $0.y != 0})
-                .sorted(by: {$0.date ?? Date() > $1.date ?? Date() })
-            
-            for driver in drivers {
-                let driverPosition = ordered.first(where: {$0.driver_number == driver.driver_number})
-                if(driverPosition != nil){
-                    var newPosition = driverPosition!
-                    newPosition.driver = driver
-                    finalPositions.append(newPosition)
-                }
-            }
-            
-            self.$locations.wrappedValue.removeAll()
-            self.$locations.wrappedValue.append(contentsOf: finalPositions)
+    func LoadPoints() async {
+        if(loadingPoints){
+            return
         }
+        
+        loadingPoints = true
+        
+        let repo = OpenF1Repository()
+        let positions = await repo.GetDriversLocations(
+            meetingKey: session.meeting_key,
+            sessionKey: session.session_key,
+            since: Date().addingTimeInterval(-0.25))
+
+        if(positions != nil){
+            refreshPositions(positions: positions!)
+        }
+        
+        loadingPoints = false
     }
     
     func startStopReplay(){
@@ -241,30 +234,34 @@ struct LiveView: View {
     }
     
     private func LoadReplayPoints() async {
-        
-        var finalPositions: [DriverLocation] = []
-        
-        let oneSecPositions = replayLocations.filter({$0.date ?? Date() >= lastReplayDate && $0.date ?? Date() < lastReplayDate.addingTimeInterval(0.5)})
-
-        let ordered = oneSecPositions
+        let oneSecPositions = replayLocations.filter({$0.date ?? Date() >= lastReplayDate && $0.date ?? Date() <= lastReplayDate.addingTimeInterval(0.25)})
+        refreshPositions(positions: oneSecPositions)
+        lastReplayDate = lastReplayDate.addingTimeInterval(replaySpeed * 0.25)
+    }
+    
+    
+    private func refreshPositions(positions: [DriverLocation]) {
+        let ordered = positions
             .filter({$0.x != 0 && $0.y != 0})
             .sorted(by: {$0.date ?? Date() > $1.date ?? Date() })
-
+        
         for driver in drivers {
             let driverPosition = ordered.first(where: {$0.driver_number == driver.driver_number})
             if(driverPosition != nil){
                 var newPosition = driverPosition!
                 newPosition.driver = driver
-                finalPositions.append(newPosition)
+                
+                let old = self.$locations.wrappedValue.first(where: {$0.driver_number == driver.driver_number})
+                if(old != nil){
+                    self.$locations.wrappedValue.replace([old!], with: [newPosition])
+                }
+                else {
+                    self.$locations.wrappedValue.append(newPosition)
+                }
             }
         }
-        
-        lastReplayDate = lastReplayDate.addingTimeInterval(replaySpeed * 0.5)
-
-        self.$locations.wrappedValue.removeAll()
-        self.$locations.wrappedValue.append(contentsOf: finalPositions)
-        
     }
+    
 }
 
 #Preview {

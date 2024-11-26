@@ -20,17 +20,11 @@
 		142606022CD3EE1C00945D16 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D5C3632CCBAD6F0080D2D5 /* SwiftUI.framework */; };
 		1426060D2CD3EE1D00945D16 /* DriverStatusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 142606002CD3EE1C00945D16 /* DriverStatusExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1472EFE52CE7A75B008C2B68 /* assetsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BF779F2CE7A63300E7D43B /* assetsFramework.framework */; };
-		1472EFE62CE7A75B008C2B68 /* assetsFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14BF779F2CE7A63300E7D43B /* assetsFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1472EFEA2CE7A761008C2B68 /* assetsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BF779F2CE7A63300E7D43B /* assetsFramework.framework */; };
-		1472EFEB2CE7A761008C2B68 /* assetsFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14BF779F2CE7A63300E7D43B /* assetsFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1472EFEF2CE7A767008C2B68 /* assetsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BF779F2CE7A63300E7D43B /* assetsFramework.framework */; };
-		1472EFF02CE7A767008C2B68 /* assetsFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14BF779F2CE7A63300E7D43B /* assetsFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1472EFF42CE7A76F008C2B68 /* assetsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BF779F2CE7A63300E7D43B /* assetsFramework.framework */; };
-		1472EFF52CE7A76F008C2B68 /* assetsFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14BF779F2CE7A63300E7D43B /* assetsFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1472EFF92CE7A778008C2B68 /* assetsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BF779F2CE7A63300E7D43B /* assetsFramework.framework */; };
-		1472EFFA2CE7A778008C2B68 /* assetsFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14BF779F2CE7A63300E7D43B /* assetsFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1472EFFE2CE7A77F008C2B68 /* assetsFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BF779F2CE7A63300E7D43B /* assetsFramework.framework */; };
-		1472EFFF2CE7A77F008C2B68 /* assetsFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14BF779F2CE7A63300E7D43B /* assetsFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14BF77802CE602F100E7D43B /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 14BF777F2CE602F100E7D43B /* CachedAsyncImage */; };
 		14BF77822CE6067500E7D43B /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 14BF77812CE6067500E7D43B /* CachedAsyncImage */; };
 		14BF77842CE6067F00E7D43B /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 14BF77832CE6067F00E7D43B /* CachedAsyncImage */; };
@@ -148,72 +142,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				14BF77A62CE7A63300E7D43B /* assetsFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1472EFE92CE7A75B008C2B68 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1472EFE62CE7A75B008C2B68 /* assetsFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1472EFEE2CE7A761008C2B68 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1472EFEB2CE7A761008C2B68 /* assetsFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1472EFF32CE7A768008C2B68 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1472EFF02CE7A767008C2B68 /* assetsFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1472EFF82CE7A76F008C2B68 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1472EFF52CE7A76F008C2B68 /* assetsFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1472EFFD2CE7A778008C2B68 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1472EFFA2CE7A778008C2B68 /* assetsFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1472F0022CE7A77F008C2B68 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1472EFFF2CE7A77F008C2B68 /* assetsFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -785,7 +713,6 @@
 				1412082D2CD4453100F81747 /* Sources */,
 				1412082E2CD4453100F81747 /* Frameworks */,
 				1412082F2CD4453100F81747 /* Resources */,
-				1472EFF82CE7A76F008C2B68 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -809,7 +736,6 @@
 				141208672CD614DA00F81747 /* Sources */,
 				141208682CD614DA00F81747 /* Frameworks */,
 				141208692CD614DA00F81747 /* Resources */,
-				1472EFFD2CE7A778008C2B68 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -834,7 +760,6 @@
 				1412087D2CD614F200F81747 /* Sources */,
 				1412087E2CD614F200F81747 /* Frameworks */,
 				1412087F2CD614F200F81747 /* Resources */,
-				1472F0022CE7A77F008C2B68 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -858,7 +783,6 @@
 				142605FC2CD3EE1C00945D16 /* Sources */,
 				142605FD2CD3EE1C00945D16 /* Frameworks */,
 				142605FE2CD3EE1C00945D16 /* Resources */,
-				1472EFF32CE7A768008C2B68 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -906,7 +830,6 @@
 				14C807322CCD508B00CF2BAF /* Sources */,
 				14C807332CCD508B00CF2BAF /* Frameworks */,
 				14C807342CCD508B00CF2BAF /* Resources */,
-				1472EFEE2CE7A761008C2B68 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -964,7 +887,6 @@
 				14D5C35B2CCBAD6E0080D2D5 /* Sources */,
 				14D5C35C2CCBAD6E0080D2D5 /* Frameworks */,
 				14D5C35D2CCBAD6E0080D2D5 /* Resources */,
-				1472EFE92CE7A75B008C2B68 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -991,7 +913,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1610;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					141208302CD4453100F81747 = {
 						CreatedOnToolsVersion = 16.1;
@@ -1243,7 +1165,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ConstructorStatusExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ConstructorStatus/Info.plist;
@@ -1255,7 +1177,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.ConstructorStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1275,7 +1197,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ConstructorStatusExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ConstructorStatus/Info.plist;
@@ -1287,7 +1209,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.ConstructorStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1307,7 +1229,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = StaredDriverStatusExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StaredDriverStatus/Info.plist;
@@ -1319,7 +1241,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.StaredDriverStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1339,7 +1261,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = StaredDriverStatusExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StaredDriverStatus/Info.plist;
@@ -1351,7 +1273,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.StaredDriverStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1371,7 +1293,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = StaredConstructorStatusExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StaredConstructorStatus/Info.plist;
@@ -1383,7 +1305,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.StaredConstructorStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1403,7 +1325,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = StaredConstructorStatusExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StaredConstructorStatus/Info.plist;
@@ -1415,7 +1337,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.StaredConstructorStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1435,7 +1357,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = DriverStatusExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DriverStatus/Info.plist;
@@ -1447,7 +1369,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.DriverStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1467,7 +1389,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = DriverStatusExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DriverStatus/Info.plist;
@@ -1479,7 +1401,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.DriverStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1497,6 +1419,7 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1538,6 +1461,7 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1580,7 +1504,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = StaredStatusExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StaredStatus/Info.plist;
@@ -1591,7 +1515,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.StaredStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1611,7 +1535,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = StaredStatusExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StaredStatus/Info.plist;
@@ -1622,7 +1546,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.StaredStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1761,7 +1685,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = FormulaOneForFree/FormulaOneForFree.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"FormulaOneForFree/Preview Content\"";
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -1776,7 +1700,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1795,7 +1719,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = FormulaOneForFree/FormulaOneForFree.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"FormulaOneForFree/Preview Content\"";
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -1810,7 +1734,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1829,7 +1753,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ChampionshipStatusExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ChampionshipStatus/Info.plist;
@@ -1840,7 +1764,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.ChampionshipWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1860,7 +1784,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ChampionshipStatusExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3X7N2Q62FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ChampionshipStatus/Info.plist;
@@ -1871,7 +1795,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcsvision.formulaoneforfree.ChampionshipWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

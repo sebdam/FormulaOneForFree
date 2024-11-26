@@ -127,7 +127,7 @@ class DataStore: ObservableObject {
                 })
             })
 
-        let meetings = try await loadFromCacheOrGetFromRepo(
+        var meetings = try await loadFromCacheOrGetFromRepo(
             repoLoadingFunction: {
                 if year < 2023 {
                     return [] as [Meeting]
@@ -143,19 +143,56 @@ class DataStore: ObservableObject {
             })
         
         //update results for prev and next races
-        let prevRace = races.last(where: {$0.datetime! < Date()})!
-        if(prevRace.Results?.isEmpty ?? true){
+        let prevRace = races.last(where: {$0.datetime! < Date()})
+        if(prevRace?.Results?.isEmpty ?? true){
             let jolpyRepo = JolpyF1Repository()
-            let results = await jolpyRepo.GetResults(forYear: Int(prevRace.season)!, forRound: prevRace.round)
+            let results = await jolpyRepo.GetResults(forYear: Int(prevRace!.season)!, forRound: prevRace!.round)
             if(results != nil && results?.MRData.RaceTable != nil){
-                let theResult = results?.MRData.RaceTable?.Races.first(where: { $0.round == prevRace.round })
+                let theResult = results?.MRData.RaceTable?.Races.first(where: { $0.round == prevRace!.round })
                 if(theResult?.Results != nil){
-                    var newPrevRace = prevRace
+                    var newPrevRace = prevRace!
                     newPrevRace.Results = theResult!.Results!
-                    races.replace([prevRace], with: [newPrevRace])
+                    races.replace([prevRace!], with: [newPrevRace])
                 }
             }
         }
+        
+        let nextRace = races.first(where: {Calendar.current.date(byAdding: .day, value: 1, to: $0.datetime!)! >= Date() })
+        if(nextRace?.Results?.isEmpty ?? true){
+            let jolpyRepo = JolpyF1Repository()
+            let results = await jolpyRepo.GetResults(forYear: Int(nextRace!.season)!, forRound: nextRace!.round)
+            if(results != nil && results?.MRData.RaceTable != nil){
+                let theResult = results?.MRData.RaceTable?.Races.first(where: { $0.round == nextRace!.round })
+                if(theResult?.Results != nil){
+                    var newPrevRace = nextRace!
+                    newPrevRace.Results = theResult!.Results!
+                    races.replace([nextRace!], with: [newPrevRace])
+                }
+            }
+        }
+        
+        if(nextRace != nil){
+            let currentMeeting = meetings.first(where: {$0.meeting_name == nextRace!.raceName && $0.year == Int(nextRace!.season) })
+            let openF1Repo = OpenF1Repository()
+            let newMeetings = await openF1Repo.GetMeetings(forYear: year, name: nextRace!.raceName)
+            if(newMeetings != nil && newMeetings?.count ?? 0 == 1){
+                let newSessions = await openF1Repo.GetSessions(forYear: year, meetingKey: newMeetings!.first!.meeting_key)
+                if(newSessions != nil) {
+                    var finalMeeting: Meeting? = newMeetings!.first!
+                    finalMeeting!.sessions = newSessions?.filter({$0.meeting_key == finalMeeting!.meeting_key})
+                    if(currentMeeting != nil){
+                        meetings.replace([currentMeeting!], with: [finalMeeting!])
+                    }
+                    else {
+                        meetings.append(finalMeeting!)
+                    }
+                }
+            }
+                
+
+            
+        }
+        
         
         let finalRaces = races
 

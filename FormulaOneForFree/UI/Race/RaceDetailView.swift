@@ -18,7 +18,7 @@ struct RaceDetailView: View {
     @State var trackImageId = UUID()
     
     
-    @State private var prevOrientation: UIDeviceOrientation = UIDevice.current.orientation
+    @State private var prevOrientation: UIDeviceOrientation = UIDeviceOrientation.portrait
     @State private var orientation: UIDeviceOrientation = UIDevice.current.orientation
     
     var body: some View {
