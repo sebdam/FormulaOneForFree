@@ -124,8 +124,8 @@ struct AccessoryInlineChampionshipStatusEntryView : View {
     
     var body: some View {
         HStack {
-            let index = entry.nextRace.index(entry.nextRace.startIndex, offsetBy: 5)
-            Text("\(entry.nextRace.prefix(upTo: index)).:\(entry.countDown)")
+            let index = entry.nextRace.count > 5 ? entry.nextRace.index(entry.nextRace.startIndex, offsetBy: 5) : entry.nextRace.endIndex
+            Text("\(entry.nextRace.prefix(upTo: index))\(entry.nextRace.count > 5 ? "." : ""):\(entry.countDown)")
                 .font(.caption2)
         }
     }

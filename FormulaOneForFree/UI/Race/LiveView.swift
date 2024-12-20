@@ -23,7 +23,9 @@ struct LiveView: View {
     
     @State var loadingPoints = false
     
-    private let timer = Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()
+    private let timerInterval = 1.0
+    private let liveOffset = 1.0
+    private let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     
     static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -167,11 +169,14 @@ struct LiveView: View {
         
         loadingPoints = true
         
+        let since = Date().addingTimeInterval(-1.0*timerInterval).addingTimeInterval(-1.0*liveOffset)
+        let to = Date().addingTimeInterval(-1.0*liveOffset)
         let repo = OpenF1Repository()
         let positions = await repo.GetDriversLocations(
             meetingKey: session.meeting_key,
             sessionKey: session.session_key,
-            since: Date().addingTimeInterval(-0.25))
+            since: since,
+            to: to)
 
         if(positions != nil){
             refreshPositions(positions: positions!)
@@ -234,9 +239,9 @@ struct LiveView: View {
     }
     
     private func LoadReplayPoints() async {
-        let oneSecPositions = replayLocations.filter({$0.date ?? Date() >= lastReplayDate && $0.date ?? Date() <= lastReplayDate.addingTimeInterval(0.25)})
+        let oneSecPositions = replayLocations.filter({$0.date ?? Date() >= lastReplayDate && $0.date ?? Date() <= lastReplayDate.addingTimeInterval(timerInterval)})
         refreshPositions(positions: oneSecPositions)
-        lastReplayDate = lastReplayDate.addingTimeInterval(replaySpeed * 0.25)
+        lastReplayDate = lastReplayDate.addingTimeInterval(replaySpeed * 1)
     }
     
     

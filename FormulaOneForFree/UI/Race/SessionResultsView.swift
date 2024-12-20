@@ -110,7 +110,9 @@ struct SessionResultsView: View {
             
             if(newPositions != nil){
                 self.session.positions = newPositions!
-                self.positions = newPositions!
+                
+                $positions.wrappedValue.removeAll()
+                $positions.wrappedValue = newPositions!
             }
             
         }

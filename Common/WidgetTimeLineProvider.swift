@@ -68,7 +68,7 @@ class WidgetTimeLineProvider {
             var entries : [SimpleEntry] = []
             let now = Date()
             for i in 0...15 {
-                let duration = computeDurations(from: race?.datetime ?? Date(),
+                let duration = race == nil ? "Season" : computeDurations(from: race?.datetime ?? Date(),
                                                 to: Calendar.current.date(byAdding: .minute, value: i, to: now)!)
                 let entry = SimpleEntry(date: Calendar.current.date(byAdding: .minute, value: i, to: now)!,
                                         driverStandings: firstDriverStanding,
@@ -76,7 +76,7 @@ class WidgetTimeLineProvider {
                                         driver: driver,
                                         driverImage: driverImage,
                                         constructorImage: constructorImage,
-                                        nextRace: race?.raceName ?? "",
+                                        nextRace: race?.raceName ?? "Next",
                                         countDown: duration)
                 entries.append(entry)
             }
@@ -207,6 +207,7 @@ class WidgetTimeLineProvider {
         if(sortedRaces != nil){
             race = sortedRaces!.first(where: {$0.datetime! > Date()})
         }
+        
         return race
     }
 }

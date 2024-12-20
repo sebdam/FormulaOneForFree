@@ -55,11 +55,17 @@ public class OpenF1Repository {
             url = url + "&driver_number=\(driverNumber!)"
         }
         
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        
         var to = to
         if(to == nil){
             to = Calendar.current.date(byAdding: .second, value: 1, to: since)!
         }
-        url = url + "&date>=\(since.ISO8601Format())&date<\(to!.ISO8601Format())"
+        let toString = formatter.string(from: to!)
+        let sinceString = formatter.string(from: since)
+        
+        url = url + "&date>=\(sinceString)&date<\(toString)"
         
         print("\(url)")
         let response:[DriverLocation]? = await fetch(url: url)

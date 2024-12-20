@@ -158,7 +158,7 @@ class DataStore: ObservableObject {
         }
         
         let nextRace = races.first(where: {Calendar.current.date(byAdding: .day, value: 1, to: $0.datetime!)! >= Date() })
-        if(nextRace?.Results?.isEmpty ?? true){
+        if(nextRace != nil && nextRace!.Results?.isEmpty ?? true){
             let jolpyRepo = JolpyF1Repository()
             let results = await jolpyRepo.GetResults(forYear: Int(nextRace!.season)!, forRound: nextRace!.round)
             if(results != nil && results?.MRData.RaceTable != nil){
